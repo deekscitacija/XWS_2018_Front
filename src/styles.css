@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #e6eef0;
+}
+
+.navbar-background{
+    background: #0b5c7c;
+}
+
+.nav-link, .navbar-left, .nav-item {
+    color: #f8ff95;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
+.navbar-brand {
+    color: #f8ff95;
+    font-size: 22px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
+.navbar-right{
+    margin-top:20px; 
+}
+
+#dropdownCombo {
+    background: #fff06c;
+}
+
+.button-type1{
+    background: #ffed47;
+    border-color: #ddd05f;
+}
+
+.button-type2{
+    background: #71bfd3;
+    border-color: #6eaebe;
+}
+
+.yellow-text-md {
+    color: #f8ff95;
+    font-size: 22px;
+    text-shadow: 1px 1px 1px #383535;
+}
