@@ -9,13 +9,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CentralComponent } from './components/central/central.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CentralComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,10 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
         {
           path : '',
           component : CentralComponent
+        },
+        {
+          path : 'register',
+          component : RegisterComponent
         }
       ])
   ],

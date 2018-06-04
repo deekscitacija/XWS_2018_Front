@@ -36,8 +36,36 @@ body {
     border-color: #6eaebe;
 }
 
+.yellow-text-sm {
+    color: #f8ff95;
+    font-size: 12px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
 .yellow-text-md {
     color: #f8ff95;
     font-size: 22px;
     text-shadow: 1px 1px 1px #383535;
+}
+
+.blue-text-sm {
+    color: #0b5c7c;
+    font-size: 12px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
+.blue-text-md {
+    color: #0b5c7c;
+    font-size: 22px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
+.error-message{
+    color : rgb(233, 72, 85);
+    font-weight: 600;
+}
+
+.success-message{
+    color :#3aca3a;
+    font-weight: 600;
 }
