@@ -57,16 +57,12 @@ export class RegisterComponent implements OnInit {
         Validators.pattern('[a-zA-z0-9._]{0,64}@[a-z]{2,10}(\\.[a-z]{2,10})+'),
         Validators.maxLength(90)
       ])),
-      telefon : new FormControl("",Validators.pattern(/^[+]?[0-9\s]*$/))
+      telefon : new FormControl("",Validators.pattern(/^[+]?[0-9\s]*$/)),
+      postbroj : new FormControl("",Validators.pattern(/^[0-9\s]*$/))
     }, this.passwordMatchValidator)
 
     this.cityCountryService.getAllCountries().subscribe((res: any) => {
       this.countries = res.responseBody;
-      console.log(this.countries)
-    })
-
-    this.cityCountryService.getCitiesByCountry(4).subscribe((res: any) => {
-      console.log(res.responseBody)
     })
 
   }

@@ -57,6 +57,12 @@
         </div>
         </div>
         <div class="form-group row">
+          <div class="col-md-6 mx-auto">
+            <input type="text" class="form-control" name="postbroj" id="postbroj" placeholder="Postanski broj" formControlName="postbroj">
+            <span class = "error-message" *ngIf="registracijaForma.get('postbroj').hasError('pattern') && registracijaForma.get('postbroj').dirty">Unesite postanski broj u validnoj formi</span>
+          </div>
+          </div>
+        <div class="form-group row">
         <div class="col-md-6 mx-auto">
           <input type="text" class="form-control" name="adresa" id="adresa" placeholder="Adresa" formControlName="adresa">
           <span class = "error-message" *ngIf="registracijaForma.get('adresa').hasError('required') && registracijaForma.get('adresa').dirty">Obavezno unesite adresu</span>

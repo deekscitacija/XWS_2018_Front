@@ -20,6 +20,7 @@ export class UserService {
     params = params.append("adresa", val.adresa);
     params = params.append("email", val.email);
     params = params.append("telefon", val.telefon);
+    params = params.append("postbroj", val.postbroj);
     
     return this.http.post<any>("/rest/register", params);
   }
