@@ -11,6 +11,9 @@ import { CentralComponent } from './components/central/central.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { RegisterComponent } from './components/register/register.component';
 
+import { UserService } from './services/user.service';
+import { CityCountryService } from './services/city-country.service';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +42,7 @@ import { RegisterComponent } from './components/register/register.component';
       ])
   ],
   entryComponents: [LoginDialogComponent],
-  providers: [],
+  providers: [UserService, CityCountryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

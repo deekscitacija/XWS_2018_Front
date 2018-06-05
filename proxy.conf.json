@@ -1,0 +1,7 @@
+{
+    "/rest/*" : {
+        "target" : "http://localhost:8081/ftn-booking.com",
+        "secure" : false
+    }
+
+}

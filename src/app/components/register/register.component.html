@@ -44,7 +44,9 @@
         </div>
         <div class="form-group row">
         <div class="col-md-6 mx-auto">
-          <input type="text" class="form-control" name="drzava" id="drzava" placeholder="Drzava" formControlName="drzava">
+          <select class="form-control" id="drzava" formControlName="drzava">
+            <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option> 
+          </select>
           <span class = "error-message" *ngIf="registracijaForma.get('drzava').hasError('required') && registracijaForma.get('drzava').dirty">Obavezno izaberite drzavu</span>
         </div>
         </div>

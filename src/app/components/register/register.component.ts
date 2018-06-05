@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { CityCountryService } from '../../services/city-country.service';
 
 @Component({
   selector: 'app-register',
@@ -10,8 +12,10 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   private registracijaForma: any;
+  private countries: any[];
+  private cities: any[];
 
-  constructor() { }
+  constructor(private userService : UserService, private cityCountryService : CityCountryService, private router: Router) { }
 
   ngOnInit() {
 
@@ -54,7 +58,16 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(90)
       ])),
       telefon : new FormControl("",Validators.pattern(/^[+]?[0-9\s]*$/))
-    },this.passwordMatchValidator)
+    }, this.passwordMatchValidator)
+
+    this.cityCountryService.getAllCountries().subscribe((res: any) => {
+      this.countries = res.responseBody;
+      console.log(this.countries)
+    })
+
+    this.cityCountryService.getCitiesByCountry(4).subscribe((res: any) => {
+      console.log(res.responseBody)
+    })
 
   }
 
@@ -65,6 +78,10 @@ export class RegisterComponent implements OnInit {
   registruj(val: any){
 
     console.log(val);
+    this.userService.register(val).subscribe((res: any) => {
+      console.log(res)
+      this.router.navigate(['']);
+    })
 
   }
 
