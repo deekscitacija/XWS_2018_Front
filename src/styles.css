@@ -69,3 +69,11 @@ body {
     color :#3aca3a;
     font-weight: 600;
 }
+
+.white-link{
+    color : wheat;
+}
+
+.gap-top-xs{
+    margin-top: 20px;
+}

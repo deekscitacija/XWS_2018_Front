@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
 
   title: string = 'app';
 
+  private regUser: any;
+
   constructor(private loginDialog: MatDialog, private registerDialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
@@ -29,11 +31,18 @@ export class AppComponent implements OnInit {
 
     dialogRefLogin.afterClosed().subscribe((result:any) => {
       console.log(result)
+      if(result != null && result != undefined){
+        this.regUser = result;
+      }
     })
   
   }
 
   register = function(){
     this.router.navigate(['/register']);
+  }
+
+  signOut(){
+    this.regUser = undefined;
   }
 }

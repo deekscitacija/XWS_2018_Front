@@ -16,24 +16,24 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="nav-item">
+      <li *ngIf="regUser == undefined" class="nav-item">
         <button class="btn btn-link nav-link" (click)="login()">Prijava</button>
       </li>
-      <li class="nav-item">
+      <li *ngIf="regUser == undefined" class="nav-item">
         <button class="btn btn-link nav-link" (click)="register()">Registracija</button>
       </li>
-      <li class="nav-item">
+      <li *ngIf="regUser != undefined" class="nav-item">
         <p class="navbar-text">Prijavljeni ste kao:</p>
       </li>
 
-      <li class="nav-item dropdown">
+      <li *ngIf="regUser != undefined" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Moje Ime
+          {{regUser.username}}
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="dropdownCombo">
           <a class="dropdown-item" >Moj profil</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" >Odjavite se</a>
+          <a class="dropdown-item" (click)="signOut()">Odjavite se</a>
         </div>
       </li>
     </ul>

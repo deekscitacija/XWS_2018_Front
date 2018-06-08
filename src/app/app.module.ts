@@ -13,6 +13,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { UserService } from './services/user.service';
 import { CityCountryService } from './services/city-country.service';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CityCountryService } from './services/city-country.service';
     AppComponent,
     CentralComponent,
     LoginDialogComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,10 @@ import { CityCountryService } from './services/city-country.service';
         {
           path : 'register',
           component : RegisterComponent
+        },
+        {
+          path : 'passwordReset',
+          component : ForgotPasswordComponent
         }
       ])
   ],
