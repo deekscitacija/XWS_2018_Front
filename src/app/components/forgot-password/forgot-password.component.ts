@@ -26,13 +26,9 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   potvrdi = function(val: any){
-    console.log(val)
-
     this.userService.resetPasswordToken(val).subscribe((res: any) => {
-      console.log(res)
       this.alertService.success(res.message);
     })
-
   }
 
 }

@@ -11,12 +11,13 @@ import { CentralComponent } from './components/central/central.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AlertComponent } from './directives/alert.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ConfirmPasswordComponent } from './components/forgot-password/confirm-password.component';
 
 import { UserService } from './services/user.service';
 import { CityCountryService } from './services/city-country.service';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { ConfirmPasswordComponent } from './components/forgot-password/confirm-password.component';
 import { AlertService } from './services/alert.service';
+import { TokenService } from './services/token.service';
 
 
 @NgModule({
@@ -57,7 +58,7 @@ import { AlertService } from './services/alert.service';
       ])
   ],
   entryComponents: [LoginDialogComponent],
-  providers: [UserService, CityCountryService, AlertService],
+  providers: [UserService, CityCountryService, AlertService, TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

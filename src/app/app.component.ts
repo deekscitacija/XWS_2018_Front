@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialog } from '@angular/material';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { Router } from '@angular/router';
+import { TokenService } from './services/token.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,14 @@ export class AppComponent implements OnInit {
 
   private regUser: any;
 
-  constructor(private loginDialog: MatDialog, private registerDialog: MatDialog, private router: Router) { }
+  constructor(private loginDialog: MatDialog, private registerDialog: MatDialog, private router: Router, 
+                private tokenService: TokenService) { }
 
   ngOnInit() {
+
+    if(localStorage.getItem('userToken') != undefined){
+      this.parseToken();
+    }
 
   }
 
@@ -30,12 +36,13 @@ export class AppComponent implements OnInit {
     })
 
     dialogRefLogin.afterClosed().subscribe((result:any) => {
-      console.log(result)
+      
       if(result != null && result != undefined){
         if(result == 1){
           this.router.navigate(['/passwordReset'])
         }else{
-          this.regUser = result;
+          localStorage.setItem('userToken', result);
+          this.parseToken();
         }
       }
     })
@@ -48,5 +55,16 @@ export class AppComponent implements OnInit {
 
   signOut(){
     this.regUser = undefined;
+    localStorage.clear();
+  }
+
+  parseToken(){
+    let tokenStr = localStorage.getItem('userToken');
+    let pomStr = JSON.parse(window.atob(tokenStr.split('.')[1]));
+
+    this.regUser = {};
+    this.regUser.id = pomStr.id;
+    this.regUser.role = pomStr.uloga[0].authority;
+    this.regUser.username = pomStr.sub;
   }
 }

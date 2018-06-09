@@ -25,15 +25,6 @@ export class UserService {
     return this.http.post<any>("/rest/register", params);
   }
 
-  login(val: any){
-
-    let params = new HttpParams();
-    params = params.append("username", val.username);
-    params = params.append("password", val.password);
-
-    return this.http.post<any>("/rest/login", params);
-  }
-
   resetPasswordToken(val: any){
 
     let params = new HttpParams();
