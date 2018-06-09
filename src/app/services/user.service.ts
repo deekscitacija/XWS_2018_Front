@@ -42,4 +42,22 @@ export class UserService {
     return this.http.post<any>("/rest/resetPass", params);
   }
 
+  checkToken(val: any){
+
+    let params = new HttpParams();
+    params = params.append("username", val.username);
+    params = params.append("codeToken", val.codeToken);
+
+    return this.http.post<any>("/rest/checkToken", params);
+  }
+
+  changePassword(val: any){
+
+    let params = new HttpParams();
+    params = params.append("username", val.username);
+    params = params.append("newPass", val.lozinka);
+
+    return this.http.post<any>("/rest/changePass", params);
+  }
+
 }

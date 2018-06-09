@@ -32,7 +32,11 @@ export class AppComponent implements OnInit {
     dialogRefLogin.afterClosed().subscribe((result:any) => {
       console.log(result)
       if(result != null && result != undefined){
-        this.regUser = result;
+        if(result == 1){
+          this.router.navigate(['/passwordReset'])
+        }else{
+          this.regUser = result;
+        }
       }
     })
   

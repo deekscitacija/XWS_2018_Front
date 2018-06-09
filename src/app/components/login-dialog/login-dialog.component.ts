@@ -41,7 +41,7 @@ export class LoginDialogComponent implements OnInit {
   }
 
   zaboravljenaLozinka(){
-
+    this.dialogRef.close(1);
   }
 
 }
