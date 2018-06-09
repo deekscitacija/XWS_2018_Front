@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from
 import { Router } from '@angular/router';
 import {ActivatedRoute} from "@angular/router";
 import { UserService } from '../../services/user.service'; 
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-confirm-password',
@@ -16,7 +17,8 @@ export class ConfirmPasswordComponent implements OnInit {
   private mode: number;
   private userUsername: string;
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService, 
+                private alertService: AlertService) { }
 
   ngOnInit() {
 
@@ -55,9 +57,13 @@ export class ConfirmPasswordComponent implements OnInit {
     val.username = this.userUsername;
     
     this.userService.checkToken(val).subscribe((res: any) => {
-        alert(res.message)
         if(res.success){
-            this.mode = 1;
+            this.alertService.success(res.message);
+            setTimeout(() =>  {
+                this.mode = 1;
+            }, 2000);
+        }else{
+            this.alertService.error(res.message);
         }
     })
 
@@ -67,9 +73,13 @@ export class ConfirmPasswordComponent implements OnInit {
     val.username = this.userUsername;
     
     this.userService.changePassword(val).subscribe((res: any) => {
-        alert(res.message)
         if(res.success){
-            this.router.navigate(['']);
+            this.alertService.success(res.message);
+            setTimeout(() =>  {
+                this.router.navigate([''])
+            }, 2000);
+        }else{
+            this.alertService.error(res.message);
         }
     })
   }

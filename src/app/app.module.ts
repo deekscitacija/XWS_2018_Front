@@ -10,11 +10,13 @@ import { AppComponent } from './app.component';
 import { CentralComponent } from './components/central/central.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AlertComponent } from './directives/alert.component';
 
 import { UserService } from './services/user.service';
 import { CityCountryService } from './services/city-country.service';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './components/forgot-password/confirm-password.component';
+import { AlertService } from './services/alert.service';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { ConfirmPasswordComponent } from './components/forgot-password/confirm-p
     LoginDialogComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    ConfirmPasswordComponent
+    ConfirmPasswordComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,7 @@ import { ConfirmPasswordComponent } from './components/forgot-password/confirm-p
       ])
   ],
   entryComponents: [LoginDialogComponent],
-  providers: [UserService, CityCountryService],
+  providers: [UserService, CityCountryService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
