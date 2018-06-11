@@ -26,7 +26,7 @@ export class TokenService {
   }
 
   public getUserFromToken() : Observable<any>{
-    console.log('usloooo')
+    
     return this.httpClient.get("/rest/getUserFromToken", {headers : this.headerSetup()});
   }
 

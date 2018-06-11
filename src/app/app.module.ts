@@ -18,6 +18,8 @@ import { UserService } from './services/user.service';
 import { CityCountryService } from './services/city-country.service';
 import { AlertService } from './services/alert.service';
 import { TokenService } from './services/token.service';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ChangePersonalInfoComponent } from './components/change-personal-info/change-personal-info.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { TokenService } from './services/token.service';
     RegisterComponent,
     ForgotPasswordComponent,
     ConfirmPasswordComponent,
-    AlertComponent
+    AlertComponent,
+    UserProfileComponent,
+    ChangePersonalInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,10 @@ import { TokenService } from './services/token.service';
         {
           path : 'passwordReset/:username',
           component : ConfirmPasswordComponent
+        },
+        {
+          path: 'myProfile/:username',
+          component : UserProfileComponent
         }
       ])
   ],

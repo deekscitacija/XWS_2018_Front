@@ -2,7 +2,15 @@ body {
     background-color: #e6eef0;
 }
 
+.gray-bg-main{
+    background-color: #e6eef0;
+}
+
 .navbar-background{
+    background: #0b5c7c;
+}
+
+.blue-bg-main{
     background: #0b5c7c;
 }
 
@@ -29,11 +37,13 @@ body {
 .button-type1{
     background: #ffed47;
     border-color: #ddd05f;
+    color: #383535
 }
 
 .button-type2{
     background: #71bfd3;
     border-color: #6eaebe;
+    color: #383535
 }
 
 .yellow-text-sm {
@@ -43,6 +53,12 @@ body {
 }
 
 .yellow-text-md {
+    color: #f8ff95;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
+.yellow-text-lg {
     color: #f8ff95;
     font-size: 22px;
     text-shadow: 1px 1px 1px #383535;
@@ -56,6 +72,24 @@ body {
 
 .blue-text-md {
     color: #0b5c7c;
+    font-size: 22px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
+.gray-text-sm {
+    color: #e6eef0;
+    font-size: 12px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
+.gray-text-md {
+    color: #e6eef0;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
+.gray-text-lg {
+    color: #e6eef0;
     font-size: 22px;
     text-shadow: 1px 1px 1px #383535;
 }

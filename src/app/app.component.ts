@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
 
   }
 
-
   login = function(){
 
     let dialogRefLogin = this.loginDialog.open(LoginDialogComponent, {
@@ -55,12 +54,25 @@ export class AppComponent implements OnInit {
 
   signOut(){
     this.regUser = undefined;
-    localStorage.clear();
+    localStorage.removeItem('userToken');
+    window.location.reload();
+  }
+
+  viewProfile(){
+    if(localStorage.getItem('userToken') != undefined){
+      this.router.navigate(['/myProfile/'+this.regUser.username]);
+    }
   }
 
   parseToken(){
     let tokenStr = localStorage.getItem('userToken');
     let pomStr = JSON.parse(window.atob(tokenStr.split('.')[1]));
+
+    if(pomStr.istice < new Date().getTime()){
+      console.log('brise se token')
+      localStorage.removeItem('userToken');
+      return;
+    }
 
     this.regUser = {};
     this.regUser.id = pomStr.id;
