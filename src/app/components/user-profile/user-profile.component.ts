@@ -30,7 +30,6 @@ export class UserProfileComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-
   }
 
   izmeniPodatke = function(){
