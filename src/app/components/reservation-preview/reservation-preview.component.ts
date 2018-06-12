@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ReservationPreviewComponent implements OnInit {
 
   @Input() reservation: any;
+  @Input() mode: number;
 
   private otkazivanje: boolean = false;
 

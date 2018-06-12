@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ReservationService } from '../../services/reservation.service';
 import { AlertService } from '../../services/alert.service'
 
@@ -9,6 +9,9 @@ import { AlertService } from '../../services/alert.service'
 })
 export class AllReservationsPreviewComponent implements OnInit {
 
+  // 0 : rezervacije, 1: potvrdjene rezervacije
+  @Input() mode: number;
+
   private reservations: any[];  
   private pageNum: number;
 
@@ -18,7 +21,7 @@ export class AllReservationsPreviewComponent implements OnInit {
 
     this.pageNum = 1;
 
-    this.reservationService.getReservations(this.pageNum).subscribe((res: any) => {
+    this.reservationService.getReservations(this.pageNum, this.mode).subscribe((res: any) => {
         this.reservations = res.responseBody.content;
         console.log(this.reservations);
     })
@@ -29,7 +32,7 @@ export class AllReservationsPreviewComponent implements OnInit {
 
     this.pageNum++;
 
-    this.reservationService.getReservations(this.pageNum).subscribe((res: any) => {
+    this.reservationService.getReservations(this.pageNum, this.mode).subscribe((res: any) => {
 
       if(res.responseBody.content.length == 0){
         this.pageNum--;
@@ -51,7 +54,7 @@ export class AllReservationsPreviewComponent implements OnInit {
       return;
     }
 
-    this.reservationService.getReservations(this.pageNum).subscribe((res: any) => {
+    this.reservationService.getReservations(this.pageNum, this.mode).subscribe((res: any) => {
       this.reservations = res.responseBody.content;
     })
 

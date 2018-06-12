@@ -8,9 +8,9 @@ export class ReservationService {
 
   constructor(private http:  HttpClient, private tokenService: TokenService) { }
 
-  getReservations(pageNum: number){
+  getReservations(pageNum: number, mode: number){
 
-    return this.http.get("rest/secured/getUserReservations?pageNum="+pageNum, {headers : this.tokenService.headerSetup()});
+    return this.http.get("rest/secured/getUserReservations?pageNum="+pageNum+"&mode="+mode, {headers : this.tokenService.headerSetup()});
   }
 
 }

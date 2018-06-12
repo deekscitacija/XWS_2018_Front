@@ -63,11 +63,11 @@
 
     <div class="tab-content" *ngIf="!promena">
         <div class="tab-pane active" id="razervacije" role="tabpanel" aria-labelledby="tab1aria">
-          <app-all-reservations-preview></app-all-reservations-preview>
+          <app-all-reservations-preview [mode]="0"></app-all-reservations-preview>
         </div>
 
         <div class="tab-pane" id="posete" role="tabpanel" aria-labelledby="tab2aria">
-          Posete in progress!
+          <app-all-reservations-preview [mode]="1"></app-all-reservations-preview>
         </div>
 
         <div class="tab-pane" id="poruke" role="tabpanel" aria-labelledby="tab3aria">
