@@ -1,0 +1,70 @@
+<div class="row">
+
+  <div class="col-lg-3">
+
+  </div>
+
+  <div class="col-lg-6">
+
+    <div class="gap-top-xs white-panel-bg">
+      
+      <div class="border-margin">
+
+          <div class="row mx-auto">
+            <label class="col-lg-10 blue-text-md"><b>BORAVAK: datum do datum</b> </label>
+            <button type="submit" class="logregBtn btn button-type2 btn-md col-lg-2" name="porvrdaRez2" (click)="odustani()">Odustani</button>
+          </div>
+            
+          <div class="row mx-auto">
+            <label class="col-lg-4 blue-text-md">Lokacija: </label>
+            <p class="blue-text-md col-lg-8">grad, drzava, adresa</p>
+          </div>
+
+          <div class="row mx-auto">
+            <label class="col-lg-4 blue-text-md">Smestaj: </label>
+            <p class="blue-text-md col-lg-8">"Ime apartmana"</p>
+          </div>
+
+          <div class="row mx-auto">
+              <label class="col-lg-4 blue-text-md">Cena po nocenju: </label>
+              <p class="blue-text-md col-lg-8">1000.00 din</p>
+          </div>
+
+          <div class="row mx-auto">
+              <label class="col-lg-4 blue-text-md">Ukupna cena: </label>
+              <p class="blue-text-md col-lg-8">4000.00</p>
+          </div>
+          
+          <div class="row mx-auto">
+              <label class="col-lg-4 blue-text-md">Nosilac rezervacije: </label>
+              <div class="radio">
+                  &nbsp;&nbsp;&nbsp;
+                  <label class="radio-inline">
+                    <input type="radio" name="optradio" value="true" checked="checked" (change)="changeOption(true)">Ja
+                  </label>
+                  &nbsp;&nbsp;&nbsp;
+                  <label class="radio-inline">
+                    <input type="radio" name="optradio" value="false" (change)="changeOption(false)">Drugo
+                  </label>
+              </div>
+          </div>
+
+          <div class="row mx-auto" *ngIf="!optradio">
+            <label class="col-lg-4 blue-text-md">Ime i prezime nosioca: </label>
+            <div class="col-lg-8">
+              <input type="text" [(ngModel)]="subjectName" placeholder="Ime" />
+              <input type="text" [(ngModel)]="subjectSurname" placeholder="Prezime" />
+            </div>
+          </div>
+
+          <div class="row mx-auto">
+            <button type="submit" class="logregBtn btn button-type1 btn-md col-lg-12" name="porvrdaRez1" (click)="potvrdiRezervaciju()">Potvrdite rezervaciju</button>
+          </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

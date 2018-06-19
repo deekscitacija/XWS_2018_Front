@@ -1,0 +1,14 @@
+.border-margin-tl {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.move-left{
+    margin-left: 5%;
+}
+
+.nav-pills > li.nav-item > .active {
+    background-color: #ffed47;
+    border-color: #ddd05f;
+    color: #383535
+}

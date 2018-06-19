@@ -1,0 +1,61 @@
+<div class="container gap-top-xs gray-bg-sm">
+  
+    <div class="row">
+      <div class="col-lg-8">
+          <div class="row">
+              <label class="col-lg-10 blue-text-sm"><b>BORAVAK: {{reservation.fromDate}} do {{reservation.toDate}}</b> </label>
+            </div>
+        
+            <div class="row">
+                <label class="col-lg-4 blue-text-md">Lokacija: </label>
+                <p class="blue-text-md col-lg-8">{{reservation.bookingUnit.city.name}}, {{reservation.bookingUnit.city.country.name}}, {{reservation.bookingUnit.address}}</p>
+            </div>
+
+            <div class="row">
+                <label class="col-lg-4 blue-text-md">Smestaj: </label>
+                <p class="blue-text-md col-lg-8">"{{reservation.bookingUnit.name}}"</p>
+            </div>
+        
+            <div class="row">
+                <label class="col-lg-4 blue-text-md">Rezervisano na: </label>
+                <p class="blue-text-md col-lg-8">{{reservation.subjectName}} {{reservation.subjectSurname}}</p>
+            </div>
+        
+            <div class="row">
+                <label class="col-lg-4 blue-text-md">Cena: </label>
+                <p class="blue-text-md col-lg-8">{{reservation.totalPrice}} din</p>
+            </div>
+      </div>
+
+      <div class="col-lg-4" *ngIf="mode == 0 && checkIfValid()">
+        <div class="button-margin">
+          <button class="btn btn-md btn-primary button-type1" (click)="otvoriZatvoriPoruku()">Poruka</button>
+        </div>
+
+        <div class="button-margin">
+          <button class="btn btn-md btn-primary button-type1" (click)="otkazi()">Otkazi</button>
+        </div>
+      </div>
+
+    </div>
+
+</div>
+
+<div class="row mx-auto gap-top-xs" *ngIf="otkazivanje">
+    <div class="col-lg-5"></div>
+    <div class="col-lg-7 gray-bg-sm">
+      <p class="blue-text-md">Da li ste sigurni da zelite da otkazete rezervaciju?</p>
+      <button class="btn btn-md btn-primary button-type2 right-items" (click)="otkazi()">Ne</button>
+      <button class="btn btn-md btn-primary button-type1 right-items" (click)="potvrdiOtkazivanje()">Da</button>
+    </div> 
+</div>
+
+<div class="row mx-auto gap-top-xs" *ngIf="poruka">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8 gray-bg-sm">
+    <p class="blue-text-md">Unesite tekst poruke: </p>
+    <textarea class="form-control" rows="5" id="tekstPoruke" name="tekstPoruke" [(ngModel)]="tekstPoruke"></textarea>
+    <button class="btn btn-md btn-primary button-type2 right-items" (click)="otvoriZatvoriPoruku()">Otkazi</button>
+    <button class="btn btn-md btn-primary button-type1 right-items" (click)="potvrdiPoruku()">Posalji</button>
+  </div> 
+</div>

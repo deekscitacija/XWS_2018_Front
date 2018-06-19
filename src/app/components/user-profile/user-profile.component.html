@@ -1,0 +1,79 @@
+<div class="row border-margin">
+  <div class="col-lg-4">
+    <div class="card card-block bg-faded blue-bg-main">
+
+    <div class="border-margin">
+
+      <legend class="leg yellow-text-md" align="center">Licni podaci:</legend>
+
+      <div class="row">
+        <label class="col-lg-5 gray-text-md">Korisnicko ime: </label>
+        <p class="gray-text-md col-lg-7">{{regUser.username}}</p>
+      </div>
+
+      <div class="row">
+        <label class="col-lg-5 gray-text-md">Ime: </label>
+        <p class="gray-text-md col-lg-7">{{regUser.name}}</p>
+      </div>
+
+      <div class="row">
+        <label class="col-lg-5 gray-text-md">Prezime: </label>
+        <p class="gray-text-md col-lg-7">{{regUser.surname}}</p>
+      </div>
+
+      <div class="row">
+        <label class="col-lg-5 gray-text-md">Adresa: </label>
+        <p class="gray-text-md col-lg-7">{{regUser.homeAddress}}, {{regUser.city.name}}, {{regUser.city.postcode}},  {{regUser.city.country.name}}</p>
+      </div>
+
+      <div class="row">
+        <label class="col-lg-5 gray-text-md">Email: </label>
+        <p class="gray-text-md col-lg-7">{{regUser.registeredUser.email}}</p>
+      </div>
+
+      <div class="row">
+          <label class="col-lg-5 gray-text-md">Telefon: </label>
+          <p class="gray-text-md col-lg-7">{{regUser.registeredUser.phoneNumber}}</p>
+        </div>
+
+      <div class="row mx-auto">
+        <button class="btn btn-md btn-primary button-type1">Promeni lozinku</button>
+        <button *ngIf="!promena" class="btn btn-md btn-primary button-type1 move-left" (click)="izmeniPodatke()">Izmeni podatke</button>
+        <button *ngIf="promena" class="btn btn-md btn-primary button-type2 move-left" (click)="izmeniPodatke()">Otkazi</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+
+  <div class="col-lg-8">
+
+    <div>
+      <app-change-personal-info *ngIf="promena" [regUser]="regUser"></app-change-personal-info>
+    </div>
+    <div class="card card-block bg-faded blue-bg-main" *ngIf="!promena">
+      <ul class="nav nav-pills mb-3 border-margin-tl" id="pills-tab" role="tablist">
+        <li class="nav-item"><a class="nav-link active" id="tab1" data-toggle="pill" href="#razervacije" role="tab" aria-controls="tab1aria" aria-selected="true">Moje rezervacije</a></li>
+        <li class="nav-item"><a class="nav-link" id="tab2" data-toggle="pill" href="#posete" role="tab" aria-controls="tab2aria" aria-selected="false">Moje posete</a></li>
+        <li class="nav-item"><a class="nav-link" id="tab3" data-toggle="pill" href="#poruke" role="tab" aria-controls="tab2aria" aria-selected="false">Poruke</a></li>
+      </ul>
+    </div>
+
+    <div class="tab-content" *ngIf="!promena">
+        <div class="tab-pane active" id="razervacije" role="tabpanel" aria-labelledby="tab1aria">
+          <app-all-reservations-preview [mode]="0"></app-all-reservations-preview>
+        </div>
+
+        <div class="tab-pane" id="posete" role="tabpanel" aria-labelledby="tab2aria">
+          <app-all-reservations-preview [mode]="1"></app-all-reservations-preview>
+        </div>
+
+        <div class="tab-pane" id="poruke" role="tabpanel" aria-labelledby="tab3aria">
+          Poruke in progress!
+        </div>
+
+    </div>
+
+</div>
