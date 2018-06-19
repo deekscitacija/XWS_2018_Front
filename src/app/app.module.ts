@@ -11,6 +11,8 @@ import { CityCountryService } from './services/city-country.service';
 import { AlertService } from './services/alert.service';
 import { TokenService } from './services/token.service';
 import { ReservationService } from './services/reservation.service';
+import { BookingUnitService } from './services/booking-unit.service';
+import { MessageService } from './services/message.service';
 
 import { AppComponent } from './app.component';
 import { CentralComponent } from './components/central/central.component';
@@ -23,6 +25,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ChangePersonalInfoComponent } from './components/change-personal-info/change-personal-info.component';
 import { ReservationPreviewComponent } from './components/reservation-preview/reservation-preview.component';
 import { AllReservationsPreviewComponent} from './components/reservation-preview/all-reservations-preview.component';
+import { ReservationPanelComponent } from './components/reservation-panel/reservation-panel.component';
 
 
 @NgModule({
@@ -37,7 +40,8 @@ import { AllReservationsPreviewComponent} from './components/reservation-preview
     UserProfileComponent,
     ChangePersonalInfoComponent,
     ReservationPreviewComponent,
-    AllReservationsPreviewComponent
+    AllReservationsPreviewComponent,
+    ReservationPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,7 @@ import { AllReservationsPreviewComponent} from './components/reservation-preview
       ])
   ],
   entryComponents: [LoginDialogComponent],
-  providers: [UserService, CityCountryService, AlertService, TokenService, ReservationService],
+  providers: [UserService, CityCountryService, AlertService, TokenService, ReservationService, BookingUnitService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

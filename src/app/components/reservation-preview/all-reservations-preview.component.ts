@@ -12,7 +12,7 @@ export class AllReservationsPreviewComponent implements OnInit {
   // 0 : rezervacije, 1: potvrdjene rezervacije
   @Input() mode: number;
 
-  private reservations: any[];  
+  private reservations: any[] = [];  
   private pageNum: number;
 
   constructor(private reservationService: ReservationService, private alertService: AlertService) { }
@@ -21,10 +21,14 @@ export class AllReservationsPreviewComponent implements OnInit {
 
     this.pageNum = 1;
 
-    this.reservationService.getReservations(this.pageNum, this.mode).subscribe((res: any) => {
+    this.reservationService.getReservations(this.pageNum, this.mode).subscribe(
+      (res: any) => {
         this.reservations = res.responseBody.content;
-        console.log(this.reservations);
-    })
+      },
+      (error: any) => {
+        this.alertService.warn('Greska prilikom preuzimanja rezervacija.');
+      }
+    )
 
   }
 

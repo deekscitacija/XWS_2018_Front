@@ -58,7 +58,10 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(90)
       ])),
       telefon : new FormControl("",Validators.pattern(/^[+]?[0-9\s]*$/)),
-      postbroj : new FormControl("",Validators.pattern(/^[0-9\s]*$/))
+      postbroj : new FormControl("",Validators.pattern(/^[0-9\s]*$/)),
+      tip : new FormControl("REG_USER", Validators.compose([
+        Validators.required
+      ]))
     }, this.passwordMatchValidator)
 
     this.cityCountryService.getAllCountries().subscribe((res: any) => {
@@ -74,11 +77,12 @@ export class RegisterComponent implements OnInit {
   registruj(val: any){
 
     console.log(val);
+    
     this.userService.register(val).subscribe((res: any) => {
       console.log(res)
       this.router.navigate(['']);
     })
-
+    
   }
 
 }

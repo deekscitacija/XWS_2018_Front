@@ -13,4 +13,9 @@ export class ReservationService {
     return this.http.get("rest/secured/getUserReservations?pageNum="+pageNum+"&mode="+mode, {headers : this.tokenService.headerSetup()});
   }
 
+  submitReservation(unitId: number, reservation: any){
+
+    return this.http.post("/rest/secured/makeReservation/"+unitId, reservation, {headers : this.tokenService.headerSetup()});
+  }
+
 }
