@@ -18,4 +18,9 @@ export class ReservationService {
     return this.http.post("/rest/secured/makeReservation/"+unitId, reservation, {headers : this.tokenService.headerSetup()});
   }
 
+  cancelReservation(reservationId: number){
+
+    return this.http.delete("/rest/secured/cancelReservation/"+reservationId, {headers : this.tokenService.headerSetup()});
+  }
+
 }

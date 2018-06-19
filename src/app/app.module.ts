@@ -26,6 +26,8 @@ import { ChangePersonalInfoComponent } from './components/change-personal-info/c
 import { ReservationPreviewComponent } from './components/reservation-preview/reservation-preview.component';
 import { AllReservationsPreviewComponent} from './components/reservation-preview/all-reservations-preview.component';
 import { ReservationPanelComponent } from './components/reservation-panel/reservation-panel.component';
+import { MessagePreviewComponent } from './components/message-preview/message-preview.component';
+import { AllMessagesPreviewComponent } from './components/message-preview/all-messages-preview.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { ReservationPanelComponent } from './components/reservation-panel/reserv
     ChangePersonalInfoComponent,
     ReservationPreviewComponent,
     AllReservationsPreviewComponent,
-    ReservationPanelComponent
+    ReservationPanelComponent,
+    MessagePreviewComponent,
+    AllMessagesPreviewComponent
   ],
   imports: [
     BrowserModule,
