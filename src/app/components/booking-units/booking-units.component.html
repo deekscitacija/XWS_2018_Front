@@ -41,4 +41,10 @@
             
         </div>
     </div>
+    <div class="pull-down">
+        <p class="left-items"><b>Ukupno {{bookingUnitsPageable.totalElements}} mogucih smestaja</b></p>
+        <button class="btn btn-primary button-type1 right-items" *ngIf="!bookingUnitsPageable.last" (click)="next()">&#x21E8;</button>
+        <button class="btn btn-primary button-type1 right-items">{{bookingUnitsPageable.number+1}}</button>
+        <button class="btn btn-primary button-type1 right-items" *ngIf="!bookingUnitsPageable.first" (click)="prev()">&#x21E6;</button>
+    </div>
 </div>

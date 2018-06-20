@@ -137,6 +137,10 @@ a:hover {
     margin-bottom: 3%;
 }
 
+.left-items{
+    float:left;
+}
+
 .right-items{
     float:right;
 }

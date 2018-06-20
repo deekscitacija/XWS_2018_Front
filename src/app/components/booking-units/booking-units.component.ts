@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-booking-units',
@@ -8,12 +8,21 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 export class BookingUnitsComponent implements OnInit {
 
     @Input() bookingUnitsPageable;
+    @Output() prevEmitter = new EventEmitter<any>();
+    @Output() nextEmitter = new EventEmitter<any>();
     private sortParam : string = '';
+    private advancedSearchWrapper : any = {};
 
     constructor() { }
 
     ngOnInit() {
-    
+        
+    }
+
+    ngOnChanges(changes: SimpleChanges){
+        if(changes.bookingUnitsPageable){
+            this.bookingUnitsPageable = changes.bookingUnitsPageable.currentValue;
+        }
     }
 
     sortByName(){
@@ -44,5 +53,12 @@ export class BookingUnitsComponent implements OnInit {
 
     }
 
+    next(){
+     this.nextEmitter.emit({page:this.bookingUnitsPageable.number+1,advancedSearchWrapper:this.advancedSearchWrapper});
+    }
+
+    prev(){
+      this.prevEmitter.emit({page:this.bookingUnitsPageable.number-1,advancedSearchWrapper:this.advancedSearchWrapper});
+    }
 
 }

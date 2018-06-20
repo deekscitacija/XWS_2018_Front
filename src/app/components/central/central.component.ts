@@ -19,6 +19,7 @@ export class CentralComponent implements OnInit {
   private invalidDestination : boolean = false;
   private showSearch : boolean = false;
   private bookingUnits : any[] = [];
+  private searchForm : any;
 
   constructor(private searchService : SearchService, private destinationNamePipe : DestinationNamePipe) { }
 
@@ -63,21 +64,21 @@ export class CentralComponent implements OnInit {
       }else if(!this.selectedDestination && this.showDestinations){
         this.selectDestination(this.destinations[0]);
       }
-      this.executeSearch(searchForm,{},1);
+      this.searchForm = searchForm;
+      this.executeSearch({page:0,advancedSearchWrapper:{}});
     }
   }
 
-  executeSearch(searchForm:any,advancedSearchWrapper:any,page:number){
+  executeSearch(searchWrapper : any){
 
-    this.searchService.searchBookingUnits(page,searchForm.form.controls['peopleNumber'].value,searchForm.form.controls['datumOd'].value, searchForm.form.controls['datumDo'].value,
-    this.selectedDestination,advancedSearchWrapper).subscribe((res:any)=>{
+    this.searchService.searchBookingUnits(searchWrapper.page,this.searchForm.form.controls['peopleNumber'].value,this.searchForm.form.controls['datumOd'].value, this.searchForm.form.controls['datumDo'].value,
+    this.selectedDestination, searchWrapper.advancedSearchWrapper).subscribe((res:any)=>{
       if(res.success){
         this.bookingUnits = res.responseBody;
         this.showSearch = true;
       }
     })
-  }
-  
+  }  
 
   counter() {
     let array = new Array();
