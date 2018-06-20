@@ -10,6 +10,7 @@ export class BookingUnitsComponent implements OnInit {
     @Input() bookingUnitsPageable;
     @Output() prevEmitter = new EventEmitter<any>();
     @Output() nextEmitter = new EventEmitter<any>();
+    @Output() advancedSearchEmitter = new EventEmitter<any>();
     private sortParam : string = '';
     private advancedSearchWrapper : any = {};
 
@@ -38,19 +39,19 @@ export class BookingUnitsComponent implements OnInit {
     }
 
     sortByRatingAscending(){
-
+        this.sortParam = 'RatingAsc'; 
     }
 
     sortByRatingDescending(){
-
+        this.sortParam = 'RatingDesc';
     }
 
     sortByCategoryAscending(){
-
+        this.sortParam = 'CategoryAsc'; 
     }
 
     sortByCategoryDescending(){
-
+        this.sortParam = 'CategoryDesc'; 
     }
 
     next(){
@@ -59,6 +60,10 @@ export class BookingUnitsComponent implements OnInit {
 
     prev(){
       this.prevEmitter.emit({page:this.bookingUnitsPageable.number-1,advancedSearchWrapper:this.advancedSearchWrapper});
+    }
+
+    executeAdvancedSearch(){
+        this.advancedSearchEmitter.emit({page:0,advancedSearchWrapper:this.advancedSearchWrapper})
     }
 
 }

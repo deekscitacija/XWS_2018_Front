@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="container" *ngIf="showSearch">
-    <app-booking-units [bookingUnitsPageable]="bookingUnits" (prevEmitter)="executeSearch($event)" (nextEmitter)="executeSearch($event)"></app-booking-units>
+    <app-booking-units [bookingUnitsPageable]="bookingUnits" (prevEmitter)="executeSearch($event)" (nextEmitter)="executeSearch($event)" (advancedSearchEmitter)="executeSearch($event)"></app-booking-units>
   </div>
   <div *ngIf="submittedError" class="error-message">
     <p *ngIf="searchForm.form.controls['destinacija'].getError('required')">Morate izabrati destinaciju.</p>
