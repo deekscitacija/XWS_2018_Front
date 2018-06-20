@@ -15,7 +15,7 @@ export class SearchService {
       return this.http.get('rest/getCountriesAndCitiesSearch',{params:params});
   }
 
-  public searchBookingUnits(page:number,peopleNumber:string,dateFrom:any,dateTo:any,selectedDestination:any,advancedSearchWrapper:any){
+  public searchBookingUnits(page:number,num:number,peopleNumber:string,dateFrom:any,dateTo:any,selectedDestination:any,advancedSearchWrapper:any){
 
     let params = new HttpParams();
     params = params.append('peopleNumber',peopleNumber);
@@ -28,7 +28,7 @@ export class SearchService {
       params = params.append('country',selectedDestination.country.id);
     }
 
-    return this.http.post('rest/getBookingUnits/'+page,advancedSearchWrapper,{params:params});
+    return this.http.post('rest/getBookingUnits/page='+page+'&num='+num,advancedSearchWrapper,{params:params});
   }
 
 }

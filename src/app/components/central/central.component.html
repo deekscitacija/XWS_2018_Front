@@ -5,10 +5,14 @@
       <input type="text" class="form-control col-md-4" name="destinacija" placeholder="Gde idete?" aria-label="destinacija" aria-describedby="basic-addon2" [(ngModel)]="destinationName" (input)="getCitiesAndCountries()" required>
         <input type="date" class="form-control col-md-2" name="datumOd" [(ngModel)]="dateFrom" [max]="dateTo" required>
         <input type="date" class="form-control col-md-2" name="datumDo" [(ngModel)]="dateTo" [min]="dateFrom" required>
-        <select class="form-control col-md-3" style="height:45px;" name="peopleNumber" [(ngModel)]="peopleNumber" required>
+        <select class="form-control col-md-2" style="height:45px;" name="peopleNumber" [(ngModel)]="peopleNumber" required>
           <option value="" hidden>Broj ljudi</option>
-            <option *ngFor="let number of counter()" value="{{number}}">{{number}}</option>
+            <option *ngFor="let people of peopleCounter()" value="{{people}}">{{people}}</option>
         </select>
+        <select class="form-control col-md-3" style="height:45px;" name="number" [(ngModel)]="resultsNumber" required>
+            <option value="" hidden>Broj rezultata po stranici</option>
+              <option *ngFor="let number of numberCounter()" value="{{number}}">{{number}}</option>
+          </select>
        <div class="input-group-append">
           <button class="btn btn-primary button-type1" type="submit">Pretrazi</button>
       </div>
@@ -27,6 +31,7 @@
     <p *ngIf="searchForm.form.controls['datumOd'].getError('required')">Morate uneti datum pocetka boravka.</p>
     <p *ngIf="searchForm.form.controls['datumDo'].getError('required')">Morate uneti datum kraja boravka.</p>
     <p *ngIf="searchForm.form.controls['peopleNumber'].getError('required')">Morate uneti broj ljudi.</p>
+    <p *ngIf="searchForm.form.controls['number'].getError('required')">Morate uneti broj zeljeni broj rezultata po stranici.</p>
     <p *ngIf="invalidDestination">Nepoznata destinacija!</p>
   </div>
 </div>
