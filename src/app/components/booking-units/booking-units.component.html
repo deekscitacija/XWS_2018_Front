@@ -1,11 +1,40 @@
 <div>
-    <div class="media bookingUnitsBorder" *ngFor="let bookingUnitDTO of bookingUnitsPageable.content">
+    <div class="card card-block bg-faded blue-bg-main">
+        <ul class="nav nav-pills mb-3 border-margin-tl">
+            <li class="nav-item" [ngClass]="{ 'item-sorted' : sortParam=='', 'item-unsorted' : sortParam!=''}"><a class="nav-link" role="button" aria-selected="false" (click)="sortByName()">Sortiraj po nazivu</a></li>
+            <li class="nav-item dropdown myItem">
+                <a class="nav-link dropdown-toggle" [ngClass]="{ 'item-sorted' : sortParam=='PriceAsc' || sortParam=='PriceDesc', 'item-unsorted' : sortParam!='PriceAsc' && sortParam!='PriceDesc'}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sortiraj po ceni</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" (click)="sortByPriceAscending()">Najjeftinije prvo</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" (click)="sortByPriceDescending()">Najjskuplje prvo</a>
+                </div>
+             </li>
+             <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" [ngClass]="{ 'item-sorted' : sortParam=='RatingAsc' || sortParam=='RatingDesc', 'item-unsorted' : sortParam!='RatingAsc' && sortParam!='RatingDesc'}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sortiraj po oceni</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" (click)="sortByRatingDescending()">Najbolje ocenjene prvo</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" (click)="sortByRatingAscending()">Najlosije ocenjene prvo</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" [ngClass]="{ 'item-sorted' : sortParam=='CategoryAsc' || sortParam=='CategoryDesc', 'item-unsorted' : sortParam!='CategoryAsc' && sortParam!='CategoryDesc'}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sortiraj po kategoriji</a>
+                <div class="dropdown-menu">
+                     <a class="dropdown-item" href="#" (click)="sortByCategoryDescending()">Najbolje prvo</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" (click)="sortByCategoryAscending()">Najlosije prvo</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="media bookingUnitsBorder" *ngFor="let bookingUnitDTO of bookingUnitsPageable.content | sortPipe : sortParam">
         <img class="mr-3" src="../../../assets/images/cruise.png" height="200" width="200">
         <p class="bookingUnitPrice">{{bookingUnitDTO.price | currency : 'RSD'}}</p>
         <div class="media-body border-margin">
             <h5 class="mt-0">{{bookingUnitDTO.bookingUnit.name}}</h5>
             <p>{{bookingUnitDTO.bookingUnit.accomodationType.name}}, {{bookingUnitDTO.bookingUnit.accomodationCategory.name}}, {{bookingUnitDTO.bookingUnit.address}}, {{bookingUnitDTO.bookingUnit.city | cityPipe}}</p>
-            <div class="alert alert-danger" role="alert" *ngIf="bookingUnitDTO.reserved">
+            <div class="alert alert-danger alertDiv" role="alert" *ngIf="bookingUnitDTO.reserved">
                 Ovaj smestaj je vec rezervisan!
             </div>
             <p class="bookingUnitRating">{{0}}</p>

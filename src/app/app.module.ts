@@ -32,6 +32,7 @@ import { MessagePreviewComponent } from './components/message-preview/message-pr
 import { AllMessagesPreviewComponent } from './components/message-preview/all-messages-preview.component';
 import { BookingUnitsComponent } from './components/booking-units/booking-units.component';
 import { CityPipe } from './pipes/cityPipe';
+import { BookingUnitSortPipe } from './pipes/sortPipe';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { CityPipe } from './pipes/cityPipe';
     MessagePreviewComponent,
     AllMessagesPreviewComponent,
     BookingUnitsComponent,
-    CityPipe
+    CityPipe,
+    BookingUnitSortPipe
   ],
   imports: [
     BrowserModule,

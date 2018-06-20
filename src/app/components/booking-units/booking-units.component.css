@@ -1,0 +1,18 @@
+.border-margin-tl {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.move-left{
+    margin-left: 5%;
+}
+
+.item-sorted{
+    border-color: #ddd05f;
+    color: #f8ff95;
+}
+
+.item-unsorted{
+    border-color: #ddd05f;
+    color: #add8e6;
+}
