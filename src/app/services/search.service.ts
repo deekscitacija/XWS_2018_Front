@@ -15,14 +15,18 @@ export class SearchService {
       return this.http.get('rest/getCountriesAndCitiesSearch',{params:params});
   }
 
-  public searchBookingUnits(page:number,peopleNumber:string,dateFrom:any,dateTo:any,country:string,city:string,advancedSearchWrapper:any){
+  public searchBookingUnits(page:number,peopleNumber:string,dateFrom:any,dateTo:any,selectedDestination:any,advancedSearchWrapper:any){
 
     let params = new HttpParams();
     params = params.append('peopleNumber',peopleNumber);
     params = params.append('dateFrom',dateFrom);
     params = params.append('dateTo',dateTo);
-    params = params.append('country',country);
-    params = params.append('city',city);
+
+    if(selectedDestination.city){
+      params = params.append('city',selectedDestination.city.id);
+    }else if(selectedDestination.country){
+      params = params.append('country',selectedDestination.country.id);
+    }
 
     return this.http.post('rest/getBookingUnits/'+page,advancedSearchWrapper,{params:params});
   }

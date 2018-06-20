@@ -1,6 +1,6 @@
 <div class="container">
   <h3>Pronadjite smestaj za vas boravak</h3>
-  <form #searchForm="ngForm" (submit)="search(searchForm)">
+  <form #searchForm="ngForm" (submit)="search(searchForm)" autocomplete="off">
     <div class="input-group mb-3">
       <input type="text" class="form-control col-md-4" name="destinacija" placeholder="Gde idete?" aria-label="destinacija" aria-describedby="basic-addon2" [(ngModel)]="destinationName" (input)="getCitiesAndCountries()" required>
         <input type="date" class="form-control col-md-2" name="datumOd" [(ngModel)]="dateFrom" [max]="dateTo" required>
@@ -18,6 +18,9 @@
     <div *ngFor="let destination of destinations" class="destinations" (click)="selectDestination(destination)">
         {{destination | destinationNamePipe}}
     </div>
+  </div>
+  <div class="container" *ngIf="showSearch">
+    <app-booking-units [bookingUnitsPageable]="bookingUnits"></app-booking-units>
   </div>
   <div *ngIf="submittedError" class="error-message">
     <p *ngIf="searchForm.form.controls['destinacija'].getError('required')">Morate izabrati destinaciju.</p>

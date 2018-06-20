@@ -157,3 +157,25 @@ a:hover {
     cursor:pointer;
     background: #c2c2c2;
 }
+
+.bookingUnitsBorder{
+    position: relative;
+    border:1px solid#0b5c7c;
+    border-width:medium; 
+    margin-top: 15px;
+}
+
+.bookingUnitPrice{
+    padding-right: 5px;
+    position:absolute;
+    bottom : 0;
+    right:0;
+}
+
+.bookingUnitRating{
+    padding-top:10px;
+    padding-right: 5px;
+    position:absolute;
+    top : 0;
+    right:0;
+}

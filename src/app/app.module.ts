@@ -30,6 +30,8 @@ import { SearchService } from './services/search.service';
 import { DestinationNamePipe } from './pipes/destinationNamePipe';
 import { MessagePreviewComponent } from './components/message-preview/message-preview.component';
 import { AllMessagesPreviewComponent } from './components/message-preview/all-messages-preview.component';
+import { BookingUnitsComponent } from './components/booking-units/booking-units.component';
+import { CityPipe } from './pipes/cityPipe';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { AllMessagesPreviewComponent } from './components/message-preview/all-me
     ReservationPanelComponent,
     DestinationNamePipe,
     MessagePreviewComponent,
-    AllMessagesPreviewComponent
+    AllMessagesPreviewComponent,
+    BookingUnitsComponent,
+    CityPipe
   ],
   imports: [
     BrowserModule,

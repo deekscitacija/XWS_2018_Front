@@ -1,0 +1,15 @@
+<div>
+    <div class="media bookingUnitsBorder" *ngFor="let bookingUnitDTO of bookingUnitsPageable.content">
+        <img class="mr-3" src="../../../assets/images/cruise.png" height="200" width="200">
+        <p class="bookingUnitPrice">{{bookingUnitDTO.price | currency : 'RSD'}}</p>
+        <div class="media-body border-margin">
+            <h5 class="mt-0">{{bookingUnitDTO.bookingUnit.name}}</h5>
+            <p>{{bookingUnitDTO.bookingUnit.accomodationType.name}}, {{bookingUnitDTO.bookingUnit.accomodationCategory.name}}, {{bookingUnitDTO.bookingUnit.address}}, {{bookingUnitDTO.bookingUnit.city | cityPipe}}</p>
+            <div class="alert alert-danger" role="alert" *ngIf="bookingUnitDTO.reserved">
+                Ovaj smestaj je vec rezervisan!
+            </div>
+            <p class="bookingUnitRating">{{0}}</p>
+            
+        </div>
+    </div>
+</div>
