@@ -140,3 +140,20 @@ a:hover {
 .right-items{
     float:right;
 }
+
+.destination-container-dropdown{
+    position: relative;
+    z-index: 1;
+    max-height: 300px;
+    background: #f6f6f6
+}
+
+.destinations{
+    padding : 10px;
+    font-family: sans-serif;
+}
+
+.destinations:hover{
+    cursor:pointer;
+    background: #c2c2c2;
+}

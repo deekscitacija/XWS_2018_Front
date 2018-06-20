@@ -1,46 +1,29 @@
-<div class="row">
-
-  <div class="col-lg-4">
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sagittis facilisis sodales. 
-      Nullam elementum volutpat dolor, sit amet fermentum nisl aliquet vestibulum. 
-      Etiam euismod interdum enim, a auctor dui blandit a. 
-      Integer tristique tortor sapien, consequat luctus erat euismod aliquam. Nulla facilisi. 
-      Donec et sodales sapien, eget egestas nunc. Sed vitae pretium erat. 
-      Interdum et malesuada fames ac ante ipsum primis in faucibus. In vitae lacus nec ligula tincidunt congue. 
-    </p>
-    <br>
-    <button class="btn btn-md btn-primary button-type1">Click me</button>
-    <br> <br>
-    <button class="btn btn-md btn-primary button-type2">Click me</button>
-  </div>
-
-  <div class="col-lg-4">
-    <p>
-      Donec rhoncus vehicula eros sed ornare. Aenean ut ante ut tortor aliquet mollis. 
-      Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-      Nam ornare enim id maximus iaculis. Vestibulum pretium tincidunt urna, vel dapibus urna pretium ac. 
-      Maecenas sapien lorem, semper vel ligula quis, pharetra malesuada eros. 
-      Vivamus congue interdum lorem vitae laoreet. Cras a commodo nisl. 
-      Phasellus id odio sit amet orci cursus suscipit. 
-    </p>
-    <br>
-    <button class="btn btn-md btn-primary button-type1">Click me</button>
-    <br> <br>
-    <button class="btn btn-md btn-primary button-type2">Click me</button>
-  </div>
-
-  <div class="col-lg-4">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sagittis facilisis sodales. 
-        Nullam elementum volutpat dolor, sit amet fermentum nisl aliquet vestibulum. 
-        Etiam euismod interdum enim, a auctor dui blandit a. 
-        Integer tristique tortor sapien, consequat luctus erat euismod aliquam. Nulla facilisi. 
-        Donec et sodales sapien, eget egestas nunc. Sed vitae pretium erat. 
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. In vitae lacus nec ligula tincidunt congue. 
-      </p>
-      <br>
-  
+<div class="container">
+  <h3>Pronadjite smestaj za vas boravak</h3>
+  <form #searchForm="ngForm" (submit)="search(searchForm)">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control col-md-4" name="destinacija" placeholder="Gde idete?" aria-label="destinacija" aria-describedby="basic-addon2" [(ngModel)]="destinationName" (input)="getCitiesAndCountries()" required>
+        <input type="date" class="form-control col-md-2" name="datumOd" [(ngModel)]="dateFrom" [max]="dateTo" required>
+        <input type="date" class="form-control col-md-2" name="datumDo" [(ngModel)]="dateTo" [min]="dateFrom" required>
+        <select class="form-control col-md-3" style="height:45px;" name="peopleNumber" [(ngModel)]="peopleNumber" required>
+          <option value="" hidden>Broj ljudi</option>
+            <option *ngFor="let number of counter()" value="{{number}}">{{number}}</option>
+        </select>
+       <div class="input-group-append">
+          <button class="btn btn-primary button-type1" type="submit">Pretrazi</button>
+      </div>
     </div>
-
+  </form>
+  <div *ngIf="showDestinations" class="destination-container-dropdown col-md-4">
+    <div *ngFor="let destination of destinations" class="destinations" (click)="selectDestination(destination)">
+        {{destination | destinationNamePipe}}
+    </div>
+  </div>
+  <div *ngIf="submittedError" class="error-message">
+    <p *ngIf="searchForm.form.controls['destinacija'].getError('required')">Morate izabrati destinaciju.</p>
+    <p *ngIf="searchForm.form.controls['datumOd'].getError('required')">Morate uneti datum pocetka boravka.</p>
+    <p *ngIf="searchForm.form.controls['datumDo'].getError('required')">Morate uneti datum kraja boravka.</p>
+    <p *ngIf="searchForm.form.controls['peopleNumber'].getError('required')">Morate uneti broj ljudi.</p>
+    <p *ngIf="invalidDestination">Nepoznata destinacija!</p>
+  </div>
 </div>
