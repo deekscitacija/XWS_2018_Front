@@ -26,6 +26,9 @@
                     <a class="dropdown-item" href="#" (click)="sortByCategoryAscending()">Najlosije prvo</a>
                 </div>
             </li>
+            <li class="nav-item ml-auto advancedSearch">
+                <button class="btn btn-primary button-type1" type="button">Napredna pretraga</button>
+            </li>
         </ul>
     </div>
     <div class="media bookingUnitsBorder" *ngFor="let bookingUnitDTO of bookingUnitsPageable.content | sortPipe : sortParam">

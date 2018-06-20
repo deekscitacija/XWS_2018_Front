@@ -52,6 +52,28 @@ export class BookingUnitSortPipe implements PipeTransform {
       return 0;
     }
   });
+}else if(args==='CategoryAsc'){
+
+  bookingUnits.sort((a: any, b: any) => {
+  if (a.bookingUnit.accomodationCategory.strength < b.bookingUnit.accomodationCategory.strength) {
+    return -1;
+  } else if (a.bookingUnit.accomodationCategory.strength > b.bookingUnit.accomodationCategory.strength) {
+    return 1;
+  } else {
+    return 0;
+  }
+});
+}else if(args==='CategoryDesc'){
+
+bookingUnits.sort((a: any, b: any) => {
+if (a.bookingUnit.accomodationCategory.strength > b.bookingUnit.accomodationCategory.strength) {
+  return -1;
+} else if (a.bookingUnit.accomodationCategory.strength < b.bookingUnit.accomodationCategory.strength) {
+  return 1;
+} else {
+  return 0;
+}
+});
 }else{
     bookingUnits.sort((a: any, b: any) => {
     if (a.bookingUnit.name < b.bookingUnit.name) {

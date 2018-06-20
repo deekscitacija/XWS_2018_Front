@@ -31,4 +31,16 @@ export class SearchService {
     return this.http.post('rest/getBookingUnits/page='+page+'&num='+num,advancedSearchWrapper,{params:params});
   }
 
+  public getAllAccomodationTypes(){
+    return this.http.get('rest/getAllAccomodationTypes');
+  }
+
+  public getAllAccomodationCategories(){
+    return this.http.get('rest/getAllAccomodationCategories');
+  }
+
+  public getAllBonusFeatures(){
+    return this.http.get('rest/getAllBonusFeatures');
+  }
+
 }

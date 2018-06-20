@@ -65,6 +65,7 @@ export class CentralComponent implements OnInit {
       }else if(!this.selectedDestination && this.showDestinations){
         this.selectDestination(this.destinations[0]);
       }
+      this.showSearch = false;
       this.searchForm = searchForm;
       this.executeSearch({page:0,advancedSearchWrapper:{}});
     }
