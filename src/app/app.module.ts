@@ -28,6 +28,8 @@ import { AllReservationsPreviewComponent} from './components/reservation-preview
 import { ReservationPanelComponent } from './components/reservation-panel/reservation-panel.component';
 import { SearchService } from './services/search.service';
 import { DestinationNamePipe } from './pipes/destinationNamePipe';
+import { MessagePreviewComponent } from './components/message-preview/message-preview.component';
+import { AllMessagesPreviewComponent } from './components/message-preview/all-messages-preview.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { DestinationNamePipe } from './pipes/destinationNamePipe';
     ReservationPreviewComponent,
     AllReservationsPreviewComponent,
     ReservationPanelComponent,
-    DestinationNamePipe
+    DestinationNamePipe,
+    MessagePreviewComponent,
+    AllMessagesPreviewComponent
   ],
   imports: [
     BrowserModule,

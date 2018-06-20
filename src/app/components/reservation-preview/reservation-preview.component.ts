@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 import { AlertService } from '../../services/alert.service';
+import { ReservationService } from '../../services/reservation.service'; 
 
 @Component({
   selector: 'app-reservation-preview',
@@ -17,7 +18,7 @@ export class ReservationPreviewComponent implements OnInit {
 
   private tekstPoruke: string = "";
 
-  constructor(private messageService: MessageService, private alertService: AlertService) { }
+  constructor(private messageService: MessageService, private alertService: AlertService, private reservationService: ReservationService) { }
 
   ngOnInit() {
   }
@@ -45,10 +46,18 @@ export class ReservationPreviewComponent implements OnInit {
 
   potvrdiOtkazivanje = function(){
     
+    this.reservationService.cancelReservation(this.reservation.id).subscribe(
+      (res: any) => {
+          window.location.reload();
+      },
+      (error: any) => {
+        this.alertService.error("Greska prilikom brisanja rezervacije.");
+      }
+    );
+
   }
 
   potvrdiPoruku = function(){
-    console.log(this.tekstPoruke);
 
     this.messageService.sendMessageToAgent(this.reservation.id, this.tekstPoruke).subscribe(
       (res: any) => {

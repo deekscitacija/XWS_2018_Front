@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { CityCountryService } from '../../services/city-country.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
   private countries: any[];
   private cities: any[];
 
-  constructor(private userService : UserService, private cityCountryService : CityCountryService, private router: Router) { }
+  constructor(private userService : UserService, private cityCountryService : CityCountryService, private router: Router,
+                private alertService: AlertService) { }
 
   ngOnInit() {
 
@@ -78,10 +80,15 @@ export class RegisterComponent implements OnInit {
 
     console.log(val);
     
-    this.userService.register(val).subscribe((res: any) => {
-      console.log(res)
-      this.router.navigate(['']);
-    })
+    this.userService.register(val).subscribe(
+      (res: any) => {
+        console.log(res)
+        this.router.navigate(['']);
+      },
+      (error: any) => {
+        this.alertService.error("Username je zauset, promenite unos.");
+      }
+    );
     
   }
 
