@@ -20,8 +20,9 @@ export class BookingUnitsComponent implements OnInit {
     private selectedAccomodationTypes : any[] = [];
     private selectedAccomodationCategories : any[] = [];
     private selectedBonusFeatures: any[] = [];
+    private images : any[] = [];
     
-    constructor(private advancedSearchDialog: MatDialog) { }
+    constructor(private advancedSearchDialog: MatDialog, private searchService : SearchService) { }
 
     ngOnInit() {
     }
@@ -29,6 +30,9 @@ export class BookingUnitsComponent implements OnInit {
     ngOnChanges(changes: SimpleChanges){
         if(changes.bookingUnitsPageable){
             this.bookingUnitsPageable = changes.bookingUnitsPageable.currentValue;
+            if(this.bookingUnitsPageable){
+                this.addImages(this.bookingUnitsPageable.content);
+            }      
         }
     }
 
@@ -88,6 +92,18 @@ export class BookingUnitsComponent implements OnInit {
               this.executeAdvancedSearch();
             }
           })
+    }
+
+    addImages(bookingUnits:any){
+        for(let bookingUnitDTO of bookingUnits){
+            this.getImage(bookingUnitDTO.bookingUnit.pictures[0].value);
+        }
+    }
+
+    getImage(path:string){
+        this.searchService.getImage(path).subscribe((res:any)=>{
+            this.images.push(URL.createObjectURL(res));
+        })
     }
 
 }

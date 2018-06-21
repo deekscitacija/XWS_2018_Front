@@ -34,6 +34,7 @@ import { BookingUnitsComponent } from './components/booking-units/booking-units.
 import { CityPipe } from './pipes/cityPipe';
 import { BookingUnitSortPipe } from './pipes/sortPipe';
 import { AdvancedSearchDialogComponent } from './components/advanced-search-dialog/advanced-search-dialog.component';
+import { SafeHtml } from './pipes/safePipe';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AdvancedSearchDialogComponent } from './components/advanced-search-dial
     BookingUnitsComponent,
     CityPipe,
     BookingUnitSortPipe,
-    AdvancedSearchDialogComponent
+    AdvancedSearchDialogComponent,
+    SafeHtml
   ],
   imports: [
     BrowserModule,
