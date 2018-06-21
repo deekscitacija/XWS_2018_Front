@@ -37,6 +37,16 @@
         </div>
       </div>
 
+      <div class="col-lg-4" *ngIf="mode == 1">
+        <div class="button-margin">
+          <button class="btn btn-md btn-primary button-type1" (click)="otvoriOcena()">Oceni boravak</button>
+        </div>
+
+        <div class="button-margin">
+          <button class="btn btn-md btn-primary button-type1" (click)="otvoriKomentar()">Ostavi komentar</button>
+        </div>
+      </div>
+
     </div>
 
 </div>
@@ -59,3 +69,28 @@
     <button class="btn btn-md btn-primary button-type1 right-items" (click)="potvrdiPoruku()">Posalji</button>
   </div> 
 </div>
+
+<div class="row mx-auto gap-top-xs" *ngIf="ocenjivanje">
+  <div class="col-lg-5"></div>
+  <div class="col-lg-7 gray-bg-sm">
+    <div class="row">
+      <p class="blue-text-md col-lg-8">Unesite ocenu za Vas boravak: </p>
+      <select class="form-control col-lg-2" [(ngModel)]="theOcena">
+          <option *ngFor="let ocena of [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]" [value]="ocena">{{ocena}}</option>
+      </select>
+    </div>
+    <br>
+    <button class="btn btn-md btn-primary button-type2 right-items" (click)="otvoriOcena()">Otkazi</button>
+    <button class="btn btn-md btn-primary button-type1 right-items" (click)="potvrdiOcenjivanje()">Porvtdi</button>
+  </div> 
+</div>
+
+<div class="row mx-auto gap-top-xs" *ngIf="komentarisanje">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 gray-bg-sm">
+      <p class="blue-text-md">Unesite tekst komentara: </p>
+      <textarea class="form-control" rows="5" id="tekstKomentara" name="tekstKomentara" [(ngModel)]="tekstKomentara"></textarea>
+      <button class="btn btn-md btn-primary button-type2 right-items" (click)="otvoriKomentar()">Otkazi</button>
+      <button class="btn btn-md btn-primary button-type1 right-items" (click)="potvrdiKomentarisanje()">Posalji</button>
+    </div> 
+  </div>

@@ -13,7 +13,6 @@ export class MessagePreviewComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.theMessage)
 
   }
 
