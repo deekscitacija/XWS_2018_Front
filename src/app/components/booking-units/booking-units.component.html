@@ -31,8 +31,8 @@
             </li>
         </ul>
     </div>
-    <div class="media bookingUnitsBorder" *ngFor="let bookingUnitDTO of bookingUnitsPageable.content | sortPipe : sortParam">
-        <img class="mr-3" src="../../../assets/images/cruise.png" height="200" width="200">
+    <div class="media bookingUnitsBorder" *ngFor="let bookingUnitDTO of bookingUnitsPageable.content | sortPipe : sortParam; let i = index">
+        <img *ngIf="images[i]" class="mr-3" [src]="images[i] | safeHtml" height="200" width="200">
         <p class="bookingUnitPrice">{{bookingUnitDTO.price | currency : 'RSD'}}</p>
         <div class="media-body border-margin">
             <h5 class="mt-0">{{bookingUnitDTO.bookingUnit.name}}</h5>
@@ -41,7 +41,7 @@
                 Ovaj smestaj je vec rezervisan!
             </div>
             <p class="bookingUnitRating">{{bookingUnitDTO.rating}}</p>
-            
+                
         </div>
     </div>
     <div class="pull-down">

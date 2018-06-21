@@ -43,4 +43,11 @@ export class SearchService {
     return this.http.get('rest/getAllBonusFeatures');
   }
 
+  public getImage(path:string){
+    let params = new HttpParams();
+    params = params.append('path',path);
+
+    return this.http.get('rest/getImage/',{params:params,responseType: 'blob'});
+  }
+
 }
