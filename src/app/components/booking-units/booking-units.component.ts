@@ -17,16 +17,13 @@ export class BookingUnitsComponent implements OnInit {
     @Output() advancedSearchEmitter = new EventEmitter<any>();
     private sortParam : string = '';
     private advancedSearchWrapper: any = {};
-    private accomodationTypes : any[] = [];
-    private accomodationCategories : any[] = [];
-    private bonusFeatures : any[] = [];
-
-    constructor(private searchService : SearchService, private advancedSearchDialog: MatDialog) { }
+    private selectedAccomodationTypes : any[] = [];
+    private selectedAccomodationCategories : any[] = [];
+    private selectedBonusFeatures: any[] = [];
+    
+    constructor(private advancedSearchDialog: MatDialog) { }
 
     ngOnInit() {
-        this.getAccomodationTypes();
-        this.getAccomodationCategories();
-        this.getBonusFeatures();
     }
 
     ngOnChanges(changes: SimpleChanges){
@@ -75,75 +72,19 @@ export class BookingUnitsComponent implements OnInit {
         this.advancedSearchEmitter.emit({page:0,advancedSearchWrapper:this.advancedSearchWrapper})
     }
 
-    getAccomodationTypes(){
-        this.searchService.getAllAccomodationTypes().subscribe((res:any)=>{
-            if(res.success){
-                this.accomodationTypes = res.responseBody;
-            }
-        })
-    }
-
-    getAccomodationCategories(){
-        this.searchService.getAllAccomodationCategories().subscribe((res:any)=>{
-            if(res.success){
-                this.accomodationCategories = res.responseBody;
-            }
-        })
-    }
-
-    getBonusFeatures(){
-        this.searchService.getAllBonusFeatures().subscribe((res:any)=>{
-            if(res.success){
-                this.bonusFeatures = res.responseBody;
-            }
-        })
-    }
-
-    bindAccomodationType(accomodationType: any){
-        var index = this.containsElement(this.accomodationTypes, accomodationType);
-        if(index==-1){
-            this.accomodationTypes.push(accomodationType);
-        }else{
-            this.accomodationTypes.splice(index,1);
-        }
-      }
-    
-      bindAccomodationCategory(accomodationCategory: any){
-        var index = this.containsElement(this.accomodationCategories, accomodationCategory);
-        if(index==-1){
-          this.accomodationCategories.push(accomodationCategory);
-        }else{
-          this.accomodationCategories.splice(index,1);
-        }
-      }
-
-      bindBonusFeatures(bonusFeature: any){
-        var index = this.containsElement(this.bonusFeatures, bonusFeature);
-        if(index==-1){
-          this.bonusFeatures.push(bonusFeature);
-        }else{
-          this.bonusFeatures.splice(index,1);
-        }
-      }
-    
-      containsElement(list:any[],element:any):number{
-        var index = 0;
-        for(let e of list){
-          if(e.id==element.id){
-            return index;
-          }
-          index++;
-        }
-        return -1;
-      }
-
-      otvoriNaprednu = function(){
+    otvoriNaprednu = function(){
 
         let dialogRef = this.advancedSearchDialog.open(AdvancedSearchDialogComponent , {
-            data: 'pozdraaaava',
+            data: {selectedAccomodationTypes: this.selectedAccomodationTypes, selectedAccomodationCategories : this.selectedAccomodationCategories, selectedBonusFeatures : this.selectedBonusFeatures},
+            disableClose: false,
             panelClass: 'custom-dialog-container'
         });
 
-      }
+        dialogRef.afterClosed().subscribe( (result:any) => {
+            if(result != null){
+              
+            }
+          })
+    }
 
 }

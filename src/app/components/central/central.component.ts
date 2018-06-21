@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../services/search.service';
-import { DestinationNamePipe } from '../../pipes/destinationNamePipe';
 
 @Component({
   selector: 'app-central',
@@ -22,7 +21,7 @@ export class CentralComponent implements OnInit {
   private searchForm : any;
   private resultsNumber : string = "";
 
-  constructor(private searchService : SearchService, private destinationNamePipe : DestinationNamePipe) { }
+  constructor(private searchService : SearchService) { }
 
   ngOnInit() {
     
@@ -49,7 +48,7 @@ export class CentralComponent implements OnInit {
 
   selectDestination(destination:any){
     this.selectedDestination = destination;
-    this.destinationName = this.destinationNamePipe.transform(this.selectedDestination);
+    this.destinationName = this.setDestinationName(this.selectedDestination);
     this.showDestinations = false;
     this.invalidDestination = false;
   }
@@ -80,6 +79,14 @@ export class CentralComponent implements OnInit {
       }
     })
   }  
+
+  setDestinationName(selectedDestination:any){
+    if(selectedDestination.city){
+      return selectedDestination.city.name;
+    }else if(selectedDestination.country){
+      return selectedDestination.country.name;
+    }
+  }
 
   peopleCounter() {
     let array = new Array();

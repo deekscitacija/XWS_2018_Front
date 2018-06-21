@@ -1,10 +1,44 @@
 <mat-dialog-content>
-  <label >Ovde ide neki dugacak tekst da mogu da testiram duzinu koliko moze da staneeeeeee!!!</label> 
+  <h6 class="yellow-text-md">Napredna pretraga</h6>
+  <hr>
+  <div class="container">
+      <div class="row mx-auto col-lg-12 gap-top-sm">
+          <label class="yellow-text-md"><b>Tipovi smestaja:</b></label>
+          <div class="scroll gray-bg-main">
+              <div *ngFor="let accomodationType of accomodationTypes">
+                <div class="row">
+                    <input type="checkbox" class="col-lg-2 gap-top-xs" (change)="bindAccomodationType(accomodationType)" [checked]="containsElement(data.selectedAccomodationTypes, accomodationType)!=-1"/>
+                    <p class="col-lg-10">{{accomodationType.name}}</p>
+                </div> 
+            </div>
+          </div>
+      </div>
+      <div class="row mx-auto col-lg-12 gap-top-sm">
+          <label class="yellow-text-md"><b>Kategorije smestaja:</b></label>
+          <div class="scroll gray-bg-main">
+              <div *ngFor="let accomodationCategory of accomodationCategories">
+                <div class="row">
+                    <input type="checkbox" class="col-lg-2 gap-top-xs" (change)="bindAccomodationCategory(accomodationCategory)" [checked]="containsElement(data.selectedAccomodationCategories, accomodationCategory)!=-1"/>
+                    <p class="col-lg-10">{{accomodationCategory.name}}</p>
+                </div> 
+            </div>
+          </div>
+      </div>
+      <div class="row mx-auto col-lg-12 gap-top-sm">
+          <label class="yellow-text-md"><b>Dodatne usluge:</b></label>
+          <div class="scroll gray-bg-main">
+              <div *ngFor="let bonusFeature of bonusFeatures">
+                <div class="row">
+                    <input type="checkbox" class="col-lg-2 gap-top-xs" (change)="bindBonusFeatures(bonusFeature)" [checked]="containsElement(data.selectedBonusFeatures, bonusFeature)!=-1"/>
+                    <p class="col-lg-10">{{bonusFeature.name}}</p>
+                </div> 
+            </div>
+          </div>
+      </div>
+  </div>
 </mat-dialog-content>
 <hr>
 <mat-dialog-actions>
-  <button type="submit" class="btn btn-md btn-primary button-type2" (click)="potvrdi(prijavaForma.value)">Potvrdi</button>
+  <button type="submit" class="btn btn-md btn-primary button-type2" (click)="potvrdi()">Potvrdi</button>
   <button class="btn btn-md btn-primary button-type1" (click)="zatvori()">Odustani</button>
-  <br>
-  <button class="btn btn-md btn-link white-link" (click)="zaboravljenaLozinka()">Zaboravili ste lozinku?</button>
 </mat-dialog-actions>
