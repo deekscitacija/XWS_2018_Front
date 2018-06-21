@@ -82,7 +82,10 @@ export class BookingUnitsComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe( (result:any) => {
             if(result != null){
-              
+              this.advancedSearchWrapper.selectedAccomodationTypes = this.selectedAccomodationTypes;
+              this.advancedSearchWrapper.selectedAccomodationCategories = this.selectedAccomodationCategories;
+              this.advancedSearchWrapper.selectedBonusFeatures = this.selectedBonusFeatures;
+              this.executeAdvancedSearch();
             }
           })
     }

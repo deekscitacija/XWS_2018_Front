@@ -7,7 +7,7 @@
           <div class="scroll gray-bg-main">
               <div *ngFor="let accomodationType of accomodationTypes">
                 <div class="row">
-                    <input type="checkbox" class="col-lg-2 gap-top-xs" (change)="bindAccomodationType(accomodationType)" [checked]="containsElement(data.selectedAccomodationTypes, accomodationType)!=-1"/>
+                    <input type="checkbox" class="col-lg-2 move-chx" (change)="bindAccomodationType(accomodationType)" [checked]="containsElement(data.selectedAccomodationTypes, accomodationType)!=-1"/>
                     <p class="col-lg-10">{{accomodationType.name}}</p>
                 </div> 
             </div>
@@ -18,7 +18,7 @@
           <div class="scroll gray-bg-main">
               <div *ngFor="let accomodationCategory of accomodationCategories">
                 <div class="row">
-                    <input type="checkbox" class="col-lg-2 gap-top-xs" (change)="bindAccomodationCategory(accomodationCategory)" [checked]="containsElement(data.selectedAccomodationCategories, accomodationCategory)!=-1"/>
+                    <input type="checkbox" class="col-lg-2 move-chx" (change)="bindAccomodationCategory(accomodationCategory)" [checked]="containsElement(data.selectedAccomodationCategories, accomodationCategory)!=-1"/>
                     <p class="col-lg-10">{{accomodationCategory.name}}</p>
                 </div> 
             </div>
@@ -29,7 +29,7 @@
           <div class="scroll gray-bg-main">
               <div *ngFor="let bonusFeature of bonusFeatures">
                 <div class="row">
-                    <input type="checkbox" class="col-lg-2 gap-top-xs" (change)="bindBonusFeatures(bonusFeature)" [checked]="containsElement(data.selectedBonusFeatures, bonusFeature)!=-1"/>
+                    <input type="checkbox" class="col-lg-2 move-chx" (change)="bindBonusFeatures(bonusFeature)" [checked]="containsElement(data.selectedBonusFeatures, bonusFeature)!=-1"/>
                     <p class="col-lg-10">{{bonusFeature.name}}</p>
                 </div> 
             </div>
