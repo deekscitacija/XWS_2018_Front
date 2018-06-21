@@ -38,10 +38,12 @@
             <h5 class="mt-0">{{bookingUnitDTO.bookingUnit.name}}</h5>
             <p>{{bookingUnitDTO.bookingUnit.accomodationType.name}}, {{bookingUnitDTO.bookingUnit.accomodationCategory.name}}, {{bookingUnitDTO.bookingUnit.address}}, {{bookingUnitDTO.bookingUnit.city | cityPipe}}</p>
             <div class="alert alert-danger alertDiv" role="alert" *ngIf="bookingUnitDTO.reserved">
-                Ovaj smestaj je vec rezervisan!
+                Ovaj smestaj je vec rezervisan u ovom periodu!
             </div>
             <p class="bookingUnitRating">{{bookingUnitDTO.rating}}</p>
-                
+            <div class="showBookingUnitPage">
+                <button class="btn btn-primary btn-sm button-type1" type="button" (click)="viewBookingUnit(bookingUnitDTO.bookingUnit.id)">Pogledaj</button> 
+            </div>
         </div>
     </div>
     <div class="pull-down">

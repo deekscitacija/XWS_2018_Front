@@ -3,6 +3,7 @@ import { SearchService } from '../../services/search.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialog } from '@angular/material';
 import { AdvancedSearchDialogComponent } from '../advanced-search-dialog/advanced-search-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking-units',
@@ -22,7 +23,7 @@ export class BookingUnitsComponent implements OnInit {
     private selectedBonusFeatures: any[] = [];
     private images : any[] = [];
     
-    constructor(private advancedSearchDialog: MatDialog, private searchService : SearchService) { }
+    constructor(private advancedSearchDialog: MatDialog, private searchService : SearchService, private router : Router) { }
 
     ngOnInit() {
     }
@@ -104,6 +105,10 @@ export class BookingUnitsComponent implements OnInit {
         this.searchService.getImage(path).subscribe((res:any)=>{
             this.images.push(URL.createObjectURL(res));
         })
+    }
+
+    viewBookingUnit(bookingUnitId:string){
+        this.router.navigate(['bookingUnit/'+bookingUnitId]);
     }
 
 }

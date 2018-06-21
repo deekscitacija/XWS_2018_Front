@@ -35,6 +35,7 @@ import { CityPipe } from './pipes/cityPipe';
 import { BookingUnitSortPipe } from './pipes/sortPipe';
 import { AdvancedSearchDialogComponent } from './components/advanced-search-dialog/advanced-search-dialog.component';
 import { SafeHtml } from './pipes/safePipe';
+import { BookingUnitViewComponent } from './components/booking-unit-view/booking-unit-view.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { SafeHtml } from './pipes/safePipe';
     CityPipe,
     BookingUnitSortPipe,
     AdvancedSearchDialogComponent,
-    SafeHtml
+    SafeHtml,
+    BookingUnitViewComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +90,10 @@ import { SafeHtml } from './pipes/safePipe';
         {
           path: 'myProfile/:username',
           component : UserProfileComponent
+        },
+        {
+          path: 'bookingUnit/:bookingUnitId',
+          component : BookingUnitViewComponent
         }
       ])
   ],

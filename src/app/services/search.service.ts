@@ -50,4 +50,12 @@ export class SearchService {
     return this.http.get('rest/getImage/',{params:params,responseType: 'blob'});
   }
 
+  public getBookingUnit(id:string){
+
+    let params = new HttpParams();
+    params = params.append('bookingUnitId',id);
+
+    return this.http.get('rest/getBookingUnit', {params:params});
+  }
+
 }
