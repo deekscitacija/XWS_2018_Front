@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { SearchService } from '../../services/search.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialog } from '@angular/material';
+import { AdvancedSearchDialogComponent } from '../advanced-search-dialog/advanced-search-dialog.component';
 
 @Component({
   selector: 'app-booking-units',
@@ -18,7 +21,7 @@ export class BookingUnitsComponent implements OnInit {
     private accomodationCategories : any[] = [];
     private bonusFeatures : any[] = [];
 
-    constructor(private searchService : SearchService) { }
+    constructor(private searchService : SearchService, private advancedSearchDialog: MatDialog) { }
 
     ngOnInit() {
         this.getAccomodationTypes();
@@ -132,6 +135,15 @@ export class BookingUnitsComponent implements OnInit {
           index++;
         }
         return -1;
+      }
+
+      otvoriNaprednu = function(){
+
+        let dialogRef = this.advancedSearchDialog.open(AdvancedSearchDialogComponent , {
+            data: 'pozdraaaava',
+            panelClass: 'custom-dialog-container'
+        });
+
       }
 
 }

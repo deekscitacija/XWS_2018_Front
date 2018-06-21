@@ -19,6 +19,27 @@
 
 }
 
+.custom-dialog-container .mat-dialog-container {
+    display: flex !important;
+	flex-direction: column;
+	
+	position: fixed;
+	left: 30%;
+  	top: 15%;
+	max-width: 600px !important;
+	max-height: 600px !important;
+	background: #094861 !important;
+	border: #094861;
+	border-width: 3px;
+	border-radius: 6px;
+	z-index: 200000;
+	padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+
+}
+
 .mat-dialog-container > * {
     display: flex;
     flex-direction: column;

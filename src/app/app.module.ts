@@ -33,6 +33,7 @@ import { AllMessagesPreviewComponent } from './components/message-preview/all-me
 import { BookingUnitsComponent } from './components/booking-units/booking-units.component';
 import { CityPipe } from './pipes/cityPipe';
 import { BookingUnitSortPipe } from './pipes/sortPipe';
+import { AdvancedSearchDialogComponent } from './components/advanced-search-dialog/advanced-search-dialog.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { BookingUnitSortPipe } from './pipes/sortPipe';
     AllMessagesPreviewComponent,
     BookingUnitsComponent,
     CityPipe,
-    BookingUnitSortPipe
+    BookingUnitSortPipe,
+    AdvancedSearchDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,7 @@ import { BookingUnitSortPipe } from './pipes/sortPipe';
         }
       ])
   ],
-  entryComponents: [LoginDialogComponent],
+  entryComponents: [LoginDialogComponent, AdvancedSearchDialogComponent],
   providers: [UserService, CityCountryService, AlertService, TokenService, ReservationService, BookingUnitService, MessageService, SearchService, DestinationNamePipe],
   bootstrap: [AppComponent]
 })
