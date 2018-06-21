@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ReservationService } from '../../services/reservation.service';
-import { AlertService } from '../../services/alert.service'
+import { AlertService } from '../../services/alert.service';
+import { CloudRatingService } from '../../services/cloud-rating.service';
 
 @Component({
   selector: 'app-all-reservations-preview',
@@ -15,7 +16,8 @@ export class AllReservationsPreviewComponent implements OnInit {
   private reservations: any[] = [];  
   private pageNum: number;
 
-  constructor(private reservationService: ReservationService, private alertService: AlertService) { }
+  constructor(private reservationService: ReservationService, private alertService: AlertService,
+                private cloudRatingService: CloudRatingService) { }
 
   ngOnInit() {
 
@@ -28,7 +30,7 @@ export class AllReservationsPreviewComponent implements OnInit {
       (error: any) => {
         this.alertService.warn('Greska prilikom preuzimanja rezervacija.');
       }
-    )
+    );
 
   }
 

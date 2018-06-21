@@ -2,6 +2,11 @@
     "/rest/*" : {
         "target" : "http://localhost:8081/ftn-booking.com",
         "secure" : false
+    },
+    "/api/*" : {
+        "target" : "https://rating-functions.azurewebsites.net/",
+        "secure" : false,
+        "changeOrigin": true
     }
 
 }

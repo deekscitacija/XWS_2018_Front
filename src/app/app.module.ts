@@ -13,6 +13,7 @@ import { TokenService } from './services/token.service';
 import { ReservationService } from './services/reservation.service';
 import { BookingUnitService } from './services/booking-unit.service';
 import { MessageService } from './services/message.service';
+import { CloudRatingService } from './services/cloud-rating.service';
 
 import { AppComponent } from './app.component';
 import { CentralComponent } from './components/central/central.component';
@@ -90,7 +91,18 @@ import { AdvancedSearchDialogComponent } from './components/advanced-search-dial
       ])
   ],
   entryComponents: [LoginDialogComponent, AdvancedSearchDialogComponent],
-  providers: [UserService, CityCountryService, AlertService, TokenService, ReservationService, BookingUnitService, MessageService, SearchService, DestinationNamePipe],
+  providers: [
+              UserService, 
+              CityCountryService, 
+              AlertService, 
+              TokenService, 
+              ReservationService, 
+              BookingUnitService, 
+              MessageService, 
+              SearchService, 
+              DestinationNamePipe,
+              CloudRatingService
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 import { AlertService } from '../../services/alert.service';
 import { ReservationService } from '../../services/reservation.service'; 
+import { CloudRatingService } from '../../services/cloud-rating.service';
 
 @Component({
   selector: 'app-reservation-preview',
@@ -15,10 +16,15 @@ export class ReservationPreviewComponent implements OnInit {
 
   private otkazivanje: boolean = false;
   private poruka: boolean = false;
+  private ocenjivanje: boolean = false;
+  private komentarisanje: boolean = false;
 
   private tekstPoruke: string = "";
+  private tekstKomentara: string = "";
+  private theOcena = 10;
 
-  constructor(private messageService: MessageService, private alertService: AlertService, private reservationService: ReservationService) { }
+  constructor(private messageService: MessageService, private alertService: AlertService, 
+                private reservationService: ReservationService, private cloudRatingService: CloudRatingService) { }
 
   ngOnInit() {
   }
@@ -73,6 +79,59 @@ export class ReservationPreviewComponent implements OnInit {
         this.poruka = false;
       }
    );
+
+  }
+
+  otvoriOcena = function(){
+    this.ocenjivanje = !this.ocenjivanje;
+    this.komentarisanje = false;
+    this.tekstKomentara = "";
+  }
+
+  otvoriKomentar = function(){
+    this.komentarisanje = !this.komentarisanje;
+    this.ocenjivanje = false;
+    this.tekstKomentara = "";
+  }
+
+  potvrdiOcenjivanje = function(){
+    
+    let theRating = {
+                      "booking_unit_id" : this.reservation.bookingUnit.id,
+                      "reservation_id" : this.reservation.id,
+                      "rating" : this.theOcena
+                    };
+
+    console.log(theRating);
+
+    this.cloudRatingService.sendRating(theRating).subscribe(
+      (res: any) => {
+        this.alertService.success(res);
+        this.ocenjivanje = false;
+      },
+      (error: any) => {
+        this.alertService.error("Greska prilikom ocenjivanja boravka, pokusajte kasnije.");
+      }
+    );
+  }
+
+  potvrdiKomentarisanje = function(){
+
+    let theComment = {
+                      "booking_unit_id" : this.reservation.bookingUnit.id,
+                      "reservation_id" : this.reservation.id,
+                      "comment" : this.tekstKomentara
+                    };
+
+    this.cloudRatingService.sendComment(theComment).subscribe(
+      (res: any) => {
+        this.alertService.success(res);
+        this.komentarisanje = false;
+      },
+      (error: any) => {
+        this.alertService.error("Greska prilikom komentarisanja boravka, pokusajte kasnije.");
+      }
+    );
 
   }
 
