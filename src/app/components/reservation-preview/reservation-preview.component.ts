@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 import { AlertService } from '../../services/alert.service';
 import { ReservationService } from '../../services/reservation.service'; 
@@ -13,6 +13,8 @@ export class ReservationPreviewComponent implements OnInit {
 
   @Input() reservation: any;
   @Input() mode: number;
+
+  @Output() refreshInput : EventEmitter<any> = new EventEmitter<any>();
 
   private otkazivanje: boolean = false;
   private poruka: boolean = false;
@@ -54,7 +56,7 @@ export class ReservationPreviewComponent implements OnInit {
     
     this.reservationService.cancelReservation(this.reservation.id).subscribe(
       (res: any) => {
-          window.location.reload();
+        this.triggerRefreshInput();
       },
       (error: any) => {
         this.alertService.error("Greska prilikom brisanja rezervacije.");
@@ -108,6 +110,7 @@ export class ReservationPreviewComponent implements OnInit {
       (res: any) => {
         this.alertService.success(res);
         this.ocenjivanje = false;
+        this.triggerRefreshInput();
       },
       (error: any) => {
         this.alertService.error("Greska prilikom ocenjivanja boravka, pokusajte kasnije.");
@@ -123,16 +126,22 @@ export class ReservationPreviewComponent implements OnInit {
                       "comment" : this.tekstKomentara
                     };
 
+                    
     this.cloudRatingService.sendComment(theComment).subscribe(
       (res: any) => {
         this.alertService.success(res);
         this.komentarisanje = false;
+        this.triggerRefreshInput();
       },
       (error: any) => {
         this.alertService.error("Greska prilikom komentarisanja boravka, pokusajte kasnije.");
       }
     );
 
+  }
+
+  triggerRefreshInput(){
+    this.refreshInput.emit(null);
   }
 
 }

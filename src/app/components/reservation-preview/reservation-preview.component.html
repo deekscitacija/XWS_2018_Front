@@ -39,11 +39,13 @@
 
       <div class="col-lg-4" *ngIf="mode == 1">
         <div class="button-margin">
-          <button class="btn btn-md btn-primary button-type1" (click)="otvoriOcena()">Oceni boravak</button>
+          <button *ngIf="reservation.rating == undefined" class="btn btn-md btn-primary button-type1" (click)="otvoriOcena()">Oceni boravak</button>
+          <label *ngIf="reservation.rating != undefined">Ocena: &nbsp;&nbsp;</label><button *ngIf="reservation.rating != undefined" class="btn btn-md btn-primary button-type1">{{reservation.rating}}</button>
         </div>
 
         <div class="button-margin">
-          <button class="btn btn-md btn-primary button-type1" (click)="otvoriKomentar()">Ostavi komentar</button>
+          <button *ngIf="reservation.comment == undefined" class="btn btn-md btn-primary button-type1" (click)="otvoriKomentar()">Ostavi komentar</button>
+          <label *ngIf="reservation.comment != undefined">Vas komentar je vec zabelezen.</label>
         </div>
       </div>
 

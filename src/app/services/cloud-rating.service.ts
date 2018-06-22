@@ -26,6 +26,16 @@ export class CloudRatingService {
     return this.http.post(azureFunctionUrl, val);
   }
 
+  getRatingsForReservationList(val: any){
+    let azureFunctionUrl: string = "api/GetListOfRatings?code=ElmnHqlE8dWNKxRpzoBjnm2MZPoj9rK5ayzTIP3lXsIfGf25QGCo0A==";
 
+    return this.http.post(azureFunctionUrl, val);
+  }
+
+  getRatingsForUnitList(val: any){
+    let azureFunctionUrl: string = "api/GetListOfRatings?code=ElmnHqlE8dWNKxRpzoBjnm2MZPoj9rK5ayzTIP3lXsIfGf25QGCo0A==";
+
+    return this.http.post(azureFunctionUrl, val);
+  }
 
 }
