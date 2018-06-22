@@ -15,6 +15,8 @@ export class BookingUnitViewComponent implements OnInit {
   private bookingUnit : any;
   private images : any[] = [];
 
+  private isReservation: boolean = false;
+
   ngOnInit() {
     this.route.params.subscribe(params => {
        this.bookingUnitId=params['bookingUnitId'];
@@ -45,5 +47,17 @@ getImage(path:string){
         this.images.push(URL.createObjectURL(res));
     })
 }
+
+  openCloseReservationPanel(){
+    this.isReservation = !this.isReservation;
+  }
+
+  checkIfLoggedIn(){
+    if(localStorage.getItem('userToken')){
+      return false;
+    }else{
+      return true;
+    }
+  }
 
 }

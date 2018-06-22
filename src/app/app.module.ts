@@ -38,6 +38,7 @@ import { AdvancedSearchDialogComponent } from './components/advanced-search-dial
 import { SafeHtml } from './pipes/safePipe';
 import { BookingUnitViewComponent } from './components/booking-unit-view/booking-unit-view.component';
 import { BonusFeaturesPipe } from './pipes/bonusFeaturesPipe';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -111,7 +112,8 @@ import { BonusFeaturesPipe } from './pipes/bonusFeaturesPipe';
               MessageService, 
               SearchService, 
               DestinationNamePipe,
-              CloudRatingService
+              CloudRatingService,
+              DatePipe
             ],
   bootstrap: [AppComponent]
 })

@@ -3,7 +3,7 @@
   <form #searchForm="ngForm" (submit)="search(searchForm)" autocomplete="off">
     <div class="input-group mb-3">
       <input type="text" class="form-control col-md-4" name="destinacija" placeholder="Gde idete?" aria-label="destinacija" aria-describedby="basic-addon2" [(ngModel)]="destinationName" (input)="getCitiesAndCountries()" required>
-        <input type="date" class="form-control col-md-2" name="datumOd" [(ngModel)]="dateFrom" [max]="dateTo" required>
+        <input type="date" class="form-control col-md-2" name="datumOd" [(ngModel)]="dateFrom" [min]="currentDate" [max]="dateTo" required>
         <input type="date" class="form-control col-md-2" name="datumDo" [(ngModel)]="dateTo" [min]="dateFrom" required>
         <select class="form-control col-md-2" style="height:45px;" name="peopleNumber" [(ngModel)]="peopleNumber" required>
           <option value="" hidden>Broj ljudi</option>

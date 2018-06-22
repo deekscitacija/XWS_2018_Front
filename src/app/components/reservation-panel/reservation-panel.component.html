@@ -1,38 +1,35 @@
 <div class="row">
-
-  <div class="col-lg-3">
-
-  </div>
-
-  <div class="col-lg-6">
-
-    <div class="gap-top-xs white-panel-bg">
+  <div class="col-lg-1"> </div>
+  <div class="col-lg-10">
+    <div class="white-panel-bg">
       
       <div class="border-margin">
-
+          <div class="row mx-auto col-lg-12"><alert></alert></div>
           <div class="row mx-auto">
-            <label class="col-lg-10 blue-text-md"><b>BORAVAK: datum do datum</b> </label>
-            <button type="submit" class="logregBtn btn button-type2 btn-md col-lg-2" name="porvrdaRez2" (click)="odustani()">Odustani</button>
+            <label class="col-lg-1 blue-text-md">Od:</label>
+            <input type="date" class="form-control col-md-3" name="datumOd" [(ngModel)]="dateFrom" [min]="currentDate" [max]="dateTo" (change)="calculateTotalPrice()" required>
+            <label class="col-lg-1 blue-text-md">Do:</label>
+            <input type="date" class="form-control col-md-3" name="datumDo" [(ngModel)]="dateTo" [min]="dateFrom" (change)="calculateTotalPrice()" required>
           </div>
             
           <div class="row mx-auto">
             <label class="col-lg-4 blue-text-md">Lokacija: </label>
-            <p class="blue-text-md col-lg-8">grad, drzava, adresa</p>
+            <p class="blue-text-md col-lg-8">{{bookingUnit?.bookingUnit.accomodationType.name}}, {{bookingUnit?.bookingUnit.accomodationCategory.name}}, {{bookingUnit?.bookingUnit.address}}, {{bookingUnit?.bookingUnit.city | cityPipe}}</p>
           </div>
 
           <div class="row mx-auto">
             <label class="col-lg-4 blue-text-md">Smestaj: </label>
-            <p class="blue-text-md col-lg-8">"Ime apartmana"</p>
+            <p class="blue-text-md col-lg-8">{{bookingUnit?.bookingUnit.name}}</p>
           </div>
 
           <div class="row mx-auto">
               <label class="col-lg-4 blue-text-md">Cena po nocenju: </label>
-              <p class="blue-text-md col-lg-8">1000.00 din</p>
+              <p class="blue-text-md col-lg-8">{{bookingUnit?.price | currency : 'RSD'}}</p>
           </div>
 
           <div class="row mx-auto">
               <label class="col-lg-4 blue-text-md">Ukupna cena: </label>
-              <p class="blue-text-md col-lg-8">4000.00</p>
+              <p class="blue-text-md col-lg-8">{{totalPrice | currency : 'RSD'}}</p>
           </div>
           
           <div class="row mx-auto">
@@ -58,7 +55,7 @@
           </div>
 
           <div class="row mx-auto">
-            <button type="submit" class="logregBtn btn button-type1 btn-md col-lg-12" name="porvrdaRez1" (click)="potvrdiRezervaciju()">Potvrdite rezervaciju</button>
+            <button type="submit" class="logregBtn btn button-type1 btn-md col-lg-12" name="porvrdaRez1" (click)="potvrdiRezervaciju()" [disabled]="!canReserve()">Potvrdite rezervaciju</button>
           </div>
 
       </div>

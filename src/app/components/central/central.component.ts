@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../services/search.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-central',
@@ -20,11 +21,12 @@ export class CentralComponent implements OnInit {
   private bookingUnits : any[] = [];
   private searchForm : any;
   private resultsNumber : string = "";
+  private currentDate : string = "";
 
-  constructor(private searchService : SearchService) { }
+  constructor(private searchService : SearchService, private datePipe : DatePipe) { }
 
   ngOnInit() {
-    
+    this.currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd'); 
   }
 
   getCitiesAndCountries(){

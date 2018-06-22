@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BookingUnitService } from '../../services/booking-unit.service';
 import { TokenService } from '../../services/token.service';
 import { ReservationService } from '../../services/reservation.service';
+import { DatePipe } from '@angular/common';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-reservation-panel',
@@ -10,28 +12,29 @@ import { ReservationService } from '../../services/reservation.service';
 })
 export class ReservationPanelComponent implements OnInit {
 
+  @Input() bookingUnit;
   private optradio: boolean;
   private subjectName: string;
   private subjectSurname: string;
+  private currentDate : string = "";
+  private dateFrom : any;
+  private dateTo : any;
+  private totalPrice : number = 0;
 
-  private regUser = {name : "Pera", surname: "Peric"};
+  private regUser = {name : "", surname: ""};
 
-  constructor(private bookingUnitService: BookingUnitService, private tokenService: TokenService, private reservationService: ReservationService) { }
+  constructor(private bookingUnitService: BookingUnitService, private tokenService: TokenService, private reservationService: ReservationService, private datePipe : DatePipe, private alertService : AlertService) { }
 
   ngOnInit() {
+
+    this.currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd'); 
 
     this.optradio = true;
 
     this.tokenService.getUserFromToken().subscribe((res: any) => {
       this.regUser = res.responseBody;
-    })
-
-    this.bookingUnitService.getPriceForUnit(1, 1, 2018).subscribe((res: any)=>{
-      console.log(res)
-    })
-
-    this.bookingUnitService.getTotalPrice(1, new Date(2018,6,10), new Date(2018,6,15), null).subscribe((res: any)=>{
-      console.log(res)
+      this.subjectName = this.regUser.name;
+      this.subjectSurname = this.regUser.surname;
     })
   }
 
@@ -50,20 +53,47 @@ export class ReservationPanelComponent implements OnInit {
   potvrdiRezervaciju = function(){
 
     let reservation = {
-                        bookingUnit: null, 
-                        confirmed: false, 
-                        fromDate : new Date(2018,2,10), 
-                        toDate : new Date(2018,2,15), 
+                        bookingUnit: this.bookingUnit, 
                         registeredUser : null, 
-                        subjectName : "Pera",
-                        subjectSurname : "Peric",
-                        totalPrice: 100 
+                        subjectName : this.subjectName,
+                        subjectSurname : this.subjectSurname,
+                        totalPrice: this.totalPrice 
                       }
 
-    this.reservationService.submitReservation(1, reservation).subscribe((res: any) => {
-      console.log(res);
+    this.reservationService.submitReservation(this.bookingUnit.bookingUnit.id,this.dateFrom, this.dateTo, reservation).subscribe((res: any) => {
+      if(res.success){
+        this.alertService.success(res.message);
+      }else{
+        this.alertService.error(res.message);
+      }
     })
 
+  }
+
+  canReserve(){
+
+    if(!this.dateFrom || !this.dateTo){
+      return false;
+    }
+
+    if(!this.optradio){
+      if(this.subjectName=='' || this.subjectSurname==''){
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  calculateTotalPrice(){
+    
+    if(this.dateFrom && this.dateTo){
+      this.bookingUnitService.getTotalPrice(this.bookingUnit.bookingUnit.id, this.dateFrom, this.dateTo, null).subscribe((res: any)=>{
+        if(res.success){
+          this.totalPrice = res.responseBody;
+        }
+      })
+    }   
   }
 
 }

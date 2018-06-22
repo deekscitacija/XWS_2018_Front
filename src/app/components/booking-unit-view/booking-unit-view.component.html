@@ -21,8 +21,16 @@
           <p class="blue-text-md" >{{bookingUnit?.bookingUnit.description}}</p>
           <hr>
           <p class="blue-text-md" >Usluge na raspolaganju: {{bookingUnit?.bookingUnit.bonusFeatures | bonusFeaturesPipe}}</p>
+          <hr>
+          <div>
+              <button class="btn btn-primary button-type2 col-lg-2" *ngIf="!isReservation" (click)="openCloseReservationPanel()" [disabled]="checkIfLoggedIn()">Rezervisi</button>
+              <button class="btn btn-primary button-type2 col-lg-2" *ngIf="isReservation" (click)="openCloseReservationPanel()">Odustani</button>
+              <button class="btn btn-primary button-type2 col-lg-2 right-items">Komentari</button>
+          </div>
       </div>
     </div>
-    <app-reservation-panel></app-reservation-panel>
+    <div *ngIf="isReservation">
+        <app-reservation-panel [bookingUnit]="bookingUnit"></app-reservation-panel>
+    </div>
 </div>
 

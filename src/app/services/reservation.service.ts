@@ -13,9 +13,14 @@ export class ReservationService {
     return this.http.get("rest/secured/getUserReservations?pageNum="+pageNum+"&mode="+mode, {headers : this.tokenService.headerSetup()});
   }
 
-  submitReservation(unitId: number, reservation: any){
+  submitReservation(unitId: string, dateFrom : string, dateTo: string, reservation: any){
 
-    return this.http.post("/rest/secured/makeReservation/"+unitId, reservation, {headers : this.tokenService.headerSetup()});
+    var params = new HttpParams();
+    params = params.append('unitId',unitId);
+    params = params.append('dateFrom',dateFrom);
+    params = params.append('dateTo',dateTo);
+
+    return this.http.post("/rest/secured/makeReservation", reservation, {params : params, headers : this.tokenService.headerSetup()});
   }
 
   cancelReservation(reservationId: number){
