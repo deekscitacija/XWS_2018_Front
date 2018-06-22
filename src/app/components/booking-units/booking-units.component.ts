@@ -126,8 +126,14 @@ export class BookingUnitsComponent implements OnInit {
         
         this.cloudRatingService.getRatingsForUnits(val).subscribe(
             (res:any)=>{
-                for(let bookingUnitId of res){
-                    this.bookingUnitsPageable.content[this.containsElement(this.bookingUnitsPageable.content,bookingUnitId.booking_unit_id)].rating = bookingUnitId.rating;
+
+                for(let bookingUnit of this.bookingUnitsPageable.content){
+                    var resId : number = this.containsElement(res,bookingUnit.bookingUnit.id);
+                    if(resId==-1){
+                        bookingUnit.rating = 0;
+                    }else{
+                        bookingUnit.rating = res[resId].rating;
+                    }
                 }
             },
             (err: any) => {
@@ -140,13 +146,11 @@ export class BookingUnitsComponent implements OnInit {
     containsElement(list:any[],element:any):number{
         var index = 0;
         for(let e of list){
-          if(e.bookingUnit.id==element){
+          if(e.booking_unit_id==element){
             return index;
           }
           index++;
         }
         return -1;
       }
-
-
 }

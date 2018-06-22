@@ -17,8 +17,8 @@
   <div class="jumbotron underCarosel">
       <div class="container yellow-bg-main card card-block bg">
           <div class="row">
-                <h3 class="display-3 blue-text-xl col-lg-10">{{bookingUnit?.bookingUnit.name}}</h3>
-                <h3 class="display-3 blue-text-xl col-lg-2" *ngIf="rating >= 0">{{rating | ratingPipe}}</h3>
+                <h3 class="display-3 blue-text-xl col-lg-8">{{bookingUnit?.bookingUnit.name}}</h3>
+                <h3 class="display-3 blue-text-xl col-lg-4" *ngIf="rating >= 0">{{rating | ratingPipe}}</h3>
           </div>
           <p class="blue-text-md">{{bookingUnit?.bookingUnit.accomodationType.name}}, {{bookingUnit?.bookingUnit.accomodationCategory.name}}, {{bookingUnit?.bookingUnit.address}}, {{bookingUnit?.bookingUnit.city | cityPipe}}</p>
           <p class="blue-text-md" >{{bookingUnit?.bookingUnit.description}}</p>

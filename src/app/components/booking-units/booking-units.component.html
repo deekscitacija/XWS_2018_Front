@@ -40,7 +40,7 @@
             <div class="alert alert-danger alertDiv" role="alert" *ngIf="bookingUnitDTO.reserved">
                 Ovaj smestaj je vec rezervisan u ovom periodu!
             </div>
-            <p class="bookingUnitRating">{{bookingUnitDTO.rating | ratingPipe}}</p>
+            <p class="bookingUnitRating" *ngIf="bookingUnitDTO.rating>=0">{{bookingUnitDTO.rating | ratingPipe}}</p>
             <div class="showBookingUnitPage">
                 <button class="btn btn-primary btn-sm button-type1" type="button" (click)="viewBookingUnit(bookingUnitDTO.bookingUnit.id)">Pogledaj</button> 
             </div>
