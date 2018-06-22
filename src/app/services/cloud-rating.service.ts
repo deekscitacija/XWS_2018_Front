@@ -26,6 +26,12 @@ export class CloudRatingService {
     return this.http.post(azureFunctionUrl, val);
   }
 
+  getRatingsForUnits(val: any){
+    let azureFunctionUrl: string = "api/GetAverageGradeForListOfUnits?code=KOle5a4JfhfU4nq9SSMe6olXFSvsYVd7YhjOoE3hF4VQDPlGalM1Jw==";
+   
+    return this.http.post(azureFunctionUrl, val);
+  }
+
 
 
 }
