@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialog } from '@angular/material';
 import { AdvancedSearchDialogComponent } from '../advanced-search-dialog/advanced-search-dialog.component';
 import { Router } from '@angular/router';
+import { CloudRatingService } from '../../services/cloud-rating.service';
 
 @Component({
   selector: 'app-booking-units',
@@ -22,8 +23,9 @@ export class BookingUnitsComponent implements OnInit {
     private selectedAccomodationCategories : any[] = [];
     private selectedBonusFeatures: any[] = [];
     private images : any[] = [];
+    private ratings : any[] = [];
     
-    constructor(private advancedSearchDialog: MatDialog, private searchService : SearchService, private router : Router) { }
+    constructor(private advancedSearchDialog: MatDialog, private searchService : SearchService, private router : Router, private cloudRatingService : CloudRatingService) { }
 
     ngOnInit() {
     }
@@ -33,6 +35,7 @@ export class BookingUnitsComponent implements OnInit {
             this.bookingUnitsPageable = changes.bookingUnitsPageable.currentValue;
             if(this.bookingUnitsPageable){
                 this.addImages(this.bookingUnitsPageable.content);
+                this.getRatings();
             }      
         }
     }
@@ -110,5 +113,40 @@ export class BookingUnitsComponent implements OnInit {
     viewBookingUnit(bookingUnitId:string){
         this.router.navigate(['bookingUnit/'+bookingUnitId]);
     }
+
+    getRatings(){
+        var bookingUnitIds = [];
+        for(let bookingUnit of this.bookingUnitsPageable.content){
+            bookingUnitIds.push(bookingUnit.bookingUnit.id);
+        }
+
+        let val = {
+            "unitsList" : bookingUnitIds
+        }
+        
+        this.cloudRatingService.getRatingsForUnits(val).subscribe(
+            (res:any)=>{
+                for(let bookingUnitId of res){
+                    this.bookingUnitsPageable.content[this.containsElement(this.bookingUnitsPageable.content,bookingUnitId.booking_unit_id)].rating = bookingUnitId.rating;
+                }
+            },
+            (err: any) => {
+                console.log('Greska');
+            }
+        )
+
+    }
+
+    containsElement(list:any[],element:any):number{
+        var index = 0;
+        for(let e of list){
+          if(e.bookingUnit.id==element){
+            return index;
+          }
+          index++;
+        }
+        return -1;
+      }
+
 
 }

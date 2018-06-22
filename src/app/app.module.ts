@@ -39,6 +39,8 @@ import { SafeHtml } from './pipes/safePipe';
 import { BookingUnitViewComponent } from './components/booking-unit-view/booking-unit-view.component';
 import { BonusFeaturesPipe } from './pipes/bonusFeaturesPipe';
 import { DatePipe } from '@angular/common';
+import { RatingPipe } from './pipes/ratingPipe';
+import { CommentsPreviewComponent } from './components/comments-preview/comments-preview.component';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { DatePipe } from '@angular/common';
     AdvancedSearchDialogComponent,
     SafeHtml,
     BookingUnitViewComponent,
-    BonusFeaturesPipe
+    BonusFeaturesPipe,
+    RatingPipe,
+    CommentsPreviewComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,10 @@
   </div>
   <div class="jumbotron underCarosel">
       <div class="container yellow-bg-main card card-block bg">
-          <h3 class="display-3 blue-text-xl">{{bookingUnit?.bookingUnit.name}}</h3>
+          <div class="row">
+                <h3 class="display-3 blue-text-xl col-lg-10">{{bookingUnit?.bookingUnit.name}}</h3>
+                <h3 class="display-3 blue-text-xl col-lg-2" *ngIf="rating >= 0">{{rating | ratingPipe}}</h3>
+          </div>
           <p class="blue-text-md">{{bookingUnit?.bookingUnit.accomodationType.name}}, {{bookingUnit?.bookingUnit.accomodationCategory.name}}, {{bookingUnit?.bookingUnit.address}}, {{bookingUnit?.bookingUnit.city | cityPipe}}</p>
           <p class="blue-text-md" >{{bookingUnit?.bookingUnit.description}}</p>
           <hr>
@@ -25,12 +28,15 @@
           <div>
               <button class="btn btn-primary button-type2 col-lg-2" *ngIf="!isReservation" (click)="openCloseReservationPanel()" [disabled]="checkIfLoggedIn()">Rezervisi</button>
               <button class="btn btn-primary button-type2 col-lg-2" *ngIf="isReservation" (click)="openCloseReservationPanel()">Odustani</button>
-              <button class="btn btn-primary button-type2 col-lg-2 right-items">Komentari</button>
+              <button class="btn btn-primary button-type2 col-lg-2 right-items" (click)="openCloseCommentsSection()">Komentari</button>
           </div>
       </div>
     </div>
     <div *ngIf="isReservation">
         <app-reservation-panel [bookingUnit]="bookingUnit"></app-reservation-panel>
+    </div>
+    <div *ngIf="isComments">
+        <app-comments-preview [comments]="comments"></app-comments-preview>
     </div>
 </div>
 

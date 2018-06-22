@@ -58,4 +58,9 @@ export class SearchService {
     return this.http.get('rest/getBookingUnit', {params:params});
   }
 
+  public getCommentsForBookingUnit(id:number){
+
+    return this.http.get('rest/getCommentsForBookingUnit/'+id);
+  }
+
 }
