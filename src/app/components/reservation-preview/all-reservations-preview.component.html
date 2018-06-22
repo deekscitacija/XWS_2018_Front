@@ -5,7 +5,7 @@
     </div>
     
     <div *ngFor="let reservation of reservations; let i = index">
-      <app-reservation-preview [reservation]="reservation" [mode]="mode" ></app-reservation-preview>
+      <app-reservation-preview [reservation]="reservation" [mode]="mode" (refreshInput)="refreshInput($event)"></app-reservation-preview>
     </div>
     <div>
         <button class="btn btn-primary button-type1 right-items" (click)="next()">&#x21E8;</button>
