@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../services/search.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CloudRatingService } from '../../services/cloud-rating.service';
 
 @Component({
   selector: 'app-booking-unit-view',
@@ -9,13 +10,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BookingUnitViewComponent implements OnInit {
 
-  constructor(private searchService : SearchService,private route: ActivatedRoute) { }
+  constructor(private searchService : SearchService,private route: ActivatedRoute, private cloudRatingService: CloudRatingService) { }
 
   private bookingUnitId : string;
   private bookingUnit : any;
   private images : any[] = [];
+  private comments: any[] = [];
+  private rating : number = -1;
 
   private isReservation: boolean = false;
+  private isComments: boolean = false;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -23,6 +27,8 @@ export class BookingUnitViewComponent implements OnInit {
     });
 
     this.getBookingUnit();
+    this.getComments();
+    this.getTheRating();
   }
 
   private getBookingUnit(){
@@ -34,6 +40,20 @@ export class BookingUnitViewComponent implements OnInit {
         }
       }
     })
+  }
+
+  private getComments(){
+    this.searchService.getCommentsForBookingUnit(Number(this.bookingUnitId)).subscribe((res: any) => {
+      if(res.success){
+        this.comments = res.responseBody;
+      }
+    });
+  }
+
+  private getTheRating(){
+    this.cloudRatingService.getRatingForUnit(Number(this.bookingUnitId)).subscribe((res: any) => {
+      this.rating = res;
+    });
   }
 
   addImages(bookingUnit:any){
@@ -50,6 +70,10 @@ getImage(path:string){
 
   openCloseReservationPanel(){
     this.isReservation = !this.isReservation;
+  }
+
+  openCloseCommentsSection(){
+    this.isComments = !this.isComments;
   }
 
   checkIfLoggedIn(){

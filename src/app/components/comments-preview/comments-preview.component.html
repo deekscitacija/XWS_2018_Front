@@ -1,0 +1,14 @@
+<div class="comments">
+    <div *ngFor="let comment of comments" class="white-panel-bg">
+
+        <div class="comment-wrap">
+            <div class="comment-block">
+                <p class="comment-text">{{comment.content}}</p>
+                <div class="bottom-comment">
+                    <div class="comment-date">Autor: @{{comment.user.username}}</div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>

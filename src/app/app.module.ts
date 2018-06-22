@@ -40,6 +40,7 @@ import { BookingUnitViewComponent } from './components/booking-unit-view/booking
 import { BonusFeaturesPipe } from './pipes/bonusFeaturesPipe';
 import { DatePipe } from '@angular/common';
 import { RatingPipe } from './pipes/ratingPipe';
+import { CommentsPreviewComponent } from './components/comments-preview/comments-preview.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { RatingPipe } from './pipes/ratingPipe';
     SafeHtml,
     BookingUnitViewComponent,
     BonusFeaturesPipe,
-    RatingPipe
+    RatingPipe,
+    CommentsPreviewComponent
   ],
   imports: [
     BrowserModule,
