@@ -1,3 +1,28 @@
-<p>
-  booking-unit-view works!
-</p>
+<div class="container">
+<div id="carouselExampleControls" class="carousel slide mx-auto" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let image of images; let i = index" [ngClass]="{'active' :  i==0}">
+            <img *ngIf="images[i]" class="d-block w-100" [src]="images[i] | safeHtml" [alt]="'carousel_' + i" />
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <div class="jumbotron underCarosel">
+      <div class="container yellow-bg-main card card-block bg">
+          <h3 class="display-3 blue-text-xl">{{bookingUnit?.bookingUnit.name}}</h3>
+          <p class="blue-text-md">{{bookingUnit?.bookingUnit.accomodationType.name}}, {{bookingUnit?.bookingUnit.accomodationCategory.name}}, {{bookingUnit?.bookingUnit.address}}, {{bookingUnit?.bookingUnit.city | cityPipe}}</p>
+          <p class="blue-text-md" >{{bookingUnit?.bookingUnit.description}}</p>
+          <hr>
+          <p class="blue-text-md" >Usluge na raspolaganju: {{bookingUnit?.bookingUnit.bonusFeatures | bonusFeaturesPipe}}</p>
+      </div>
+    </div>
+    <app-reservation-panel></app-reservation-panel>
+</div>
+

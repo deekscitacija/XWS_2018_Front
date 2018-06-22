@@ -90,6 +90,12 @@ body {
     text-shadow: 1px 1px 1px #383535;
 }
 
+.blue-text-xl {
+    color: #0b5c7c;
+    font-size: 38px;
+    text-shadow: 1px 1px 1px #383535;
+}
+
 .gray-text-sm {
     color: #e6eef0;
     font-size: 14px;
@@ -199,4 +205,12 @@ a:hover {
     padding-right: 30px;
 }
 
+.carousel {
+    width:340px;
+    height:100px;
+  }
+
+.underCarosel{
+    padding-top:300px;
+}
 

@@ -37,6 +37,7 @@ import { BookingUnitSortPipe } from './pipes/sortPipe';
 import { AdvancedSearchDialogComponent } from './components/advanced-search-dialog/advanced-search-dialog.component';
 import { SafeHtml } from './pipes/safePipe';
 import { BookingUnitViewComponent } from './components/booking-unit-view/booking-unit-view.component';
+import { BonusFeaturesPipe } from './pipes/bonusFeaturesPipe';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { BookingUnitViewComponent } from './components/booking-unit-view/booking
     BookingUnitSortPipe,
     AdvancedSearchDialogComponent,
     SafeHtml,
-    BookingUnitViewComponent
+    BookingUnitViewComponent,
+    BonusFeaturesPipe
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,8 @@ export class BookingUnitViewComponent implements OnInit {
   constructor(private searchService : SearchService,private route: ActivatedRoute) { }
 
   private bookingUnitId : string;
+  private bookingUnit : any;
+  private images : any[] = [];
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -24,9 +26,24 @@ export class BookingUnitViewComponent implements OnInit {
   private getBookingUnit(){
     this.searchService.getBookingUnit(this.bookingUnitId).subscribe((res:any)=>{
       if(res.success){
-        console.log(res.responseBody);
+        this.bookingUnit = res.responseBody;
+        if(this.bookingUnit){
+          this.addImages(this.bookingUnit);
+        }
       }
     })
   }
+
+  addImages(bookingUnit:any){
+    for(let bookingUnitPicture of bookingUnit.bookingUnit.pictures){
+        this.getImage(bookingUnitPicture.value);
+    }
+}
+
+getImage(path:string){
+    this.searchService.getImage(path).subscribe((res:any)=>{
+        this.images.push(URL.createObjectURL(res));
+    })
+}
 
 }
