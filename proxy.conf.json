@@ -1,6 +1,6 @@
 {
     "/rest/*" : {
-        "target" : "http://localhost:9090/ftn-booking.com",
+        "target" : "http://localhost:8081/ftn-booking.com",
         "secure" : false
     },
     "/api/*" : {
