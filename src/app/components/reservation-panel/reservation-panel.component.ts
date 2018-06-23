@@ -28,7 +28,9 @@ export class ReservationPanelComponent implements OnInit {
   ngOnInit() {
 
     this.currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd'); 
-
+    if(this.dateFrom!="" && this.dateTo!=""){
+      this.calculateTotalPrice();
+    }
     this.optradio = true;
 
     this.tokenService.getUserFromToken().subscribe((res: any) => {
