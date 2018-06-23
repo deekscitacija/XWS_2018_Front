@@ -17,6 +17,8 @@ export class BookingUnitViewComponent implements OnInit {
   private images : any[] = [];
   private comments: any[] = [];
   private rating : number = -1;
+  private dateFrom : string = "";
+  private dateTo : string = "";
 
   private isReservation: boolean = false;
   private isComments: boolean = false;
@@ -24,6 +26,16 @@ export class BookingUnitViewComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
        this.bookingUnitId=params['bookingUnitId'];
+       var date1 = new Date(params['dateFrom']);
+       var date2 = new Date(params['dateTo']);
+       if (!isNaN(date1.getTime()) && !isNaN(date2.getTime())){
+         var currentDate = new Date();
+         currentDate.setDate(currentDate.getDate() - 1);
+         if(date1.getTime() >= currentDate.getTime() && date2.getTime()>=date1.getTime()){
+          this.dateFrom = params['dateFrom'];
+          this.dateTo = params['dateTo'];
+         }      
+       }
     });
 
     this.getBookingUnit();

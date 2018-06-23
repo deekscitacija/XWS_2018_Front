@@ -13,12 +13,12 @@ import { AlertService } from '../../services/alert.service';
 export class ReservationPanelComponent implements OnInit {
 
   @Input() bookingUnit;
+  @Input() dateFrom : any;
+  @Input() dateTo : any;
   private optradio: boolean;
   private subjectName: string;
   private subjectSurname: string;
   private currentDate : string = "";
-  private dateFrom : any;
-  private dateTo : any;
   private totalPrice : number = 0;
 
   private regUser = {name : "", surname: ""};

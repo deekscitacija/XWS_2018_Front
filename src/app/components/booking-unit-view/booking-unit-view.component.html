@@ -33,7 +33,7 @@
       </div>
     </div>
     <div *ngIf="isReservation">
-        <app-reservation-panel [bookingUnit]="bookingUnit"></app-reservation-panel>
+        <app-reservation-panel [bookingUnit]="bookingUnit" [dateFrom]="dateFrom" [dateTo]="dateTo"></app-reservation-panel>
     </div>
     <div *ngIf="isComments">
         <app-comments-preview [comments]="comments"></app-comments-preview>

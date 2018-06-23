@@ -14,6 +14,7 @@ import { CloudRatingService } from '../../services/cloud-rating.service';
 export class BookingUnitsComponent implements OnInit {
 
     @Input() bookingUnitsPageable;
+    @Input() searchForm;
     @Output() prevEmitter = new EventEmitter<any>();
     @Output() nextEmitter = new EventEmitter<any>();
     @Output() advancedSearchEmitter = new EventEmitter<any>();
@@ -111,7 +112,7 @@ export class BookingUnitsComponent implements OnInit {
     }
 
     viewBookingUnit(bookingUnitId:string){
-        this.router.navigate(['bookingUnit/'+bookingUnitId]);
+        this.router.navigate(['bookingUnit/'+bookingUnitId,{dateFrom:this.searchForm.form.controls['datumOd'].value, dateTo:this.searchForm.form.controls['datumDo'].value}]);
     }
 
     getRatings(){
