@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(90)
       ])),
       telefon : new FormControl("",Validators.pattern(/^[+]?[0-9\s]*$/)),
-      postbroj : new FormControl("",Validators.pattern(/^[0-9\s]*$/)),
+      postbroj : new FormControl(""),
       tip : new FormControl("REG_USER", Validators.compose([
         Validators.required
       ]))

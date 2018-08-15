@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class RatingPipe implements PipeTransform
 {
     transform(rating : any) : any{
-        if(rating==0){
+        if(rating==0 || !rating){
             return "Nije ocenjeno!";
         }else{
 

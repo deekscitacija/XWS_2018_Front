@@ -23,9 +23,6 @@
         {{destination | destinationNamePipe}}
     </div>
   </div>
-  <div class="container" *ngIf="showSearch">
-    <app-booking-units [searchForm]="searchForm" [bookingUnitsPageable]="bookingUnits" (prevEmitter)="executeSearch($event)" (nextEmitter)="executeSearch($event)" (advancedSearchEmitter)="executeSearch($event)"></app-booking-units>
-  </div>
   <div *ngIf="submittedError" class="error-message">
     <p *ngIf="searchForm.form.controls['destinacija'].getError('required')">Morate izabrati destinaciju.</p>
     <p *ngIf="searchForm.form.controls['datumOd'].getError('required')">Morate uneti datum pocetka boravka.</p>
@@ -34,4 +31,8 @@
     <p *ngIf="searchForm.form.controls['number'].getError('required')">Morate uneti broj zeljeni broj rezultata po stranici.</p>
     <p *ngIf="invalidDestination">Nepoznata destinacija!</p>
   </div>
+  <div class="container" *ngIf="showSearch">
+    <app-booking-units [searchForm]="searchForm" [bookingUnitsPageable]="bookingUnits" (prevEmitter)="executeSearch($event)" (nextEmitter)="executeSearch($event)" (advancedSearchEmitter)="executeSearch($event)"></app-booking-units>
+  </div>
+  
 </div>
