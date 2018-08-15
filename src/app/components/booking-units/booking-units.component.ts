@@ -3,7 +3,7 @@ import { SearchService } from '../../services/search.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialog } from '@angular/material';
 import { AdvancedSearchDialogComponent } from '../advanced-search-dialog/advanced-search-dialog.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CloudRatingService } from '../../services/cloud-rating.service';
 
 @Component({
@@ -26,9 +26,10 @@ export class BookingUnitsComponent implements OnInit {
     private images : any[] = [];
     private ratings : any[] = [];
     
-    constructor(private advancedSearchDialog: MatDialog, private searchService : SearchService, private router : Router, private cloudRatingService : CloudRatingService) { }
+    constructor(private advancedSearchDialog: MatDialog, private searchService : SearchService, private router : Router, private route : ActivatedRoute, private cloudRatingService : CloudRatingService) { }
 
     ngOnInit() {
+        this.init();
     }
 
     ngOnChanges(changes: SimpleChanges){
@@ -39,6 +40,26 @@ export class BookingUnitsComponent implements OnInit {
                 this.getRatings();
             }      
         }
+    }
+
+    init(){
+        this.route.queryParamMap.subscribe((queryParams)=>{
+            if(queryParams.has('types')){
+                this.selectedAccomodationTypes = queryParams.getAll('types');
+            }else{
+                this.selectedAccomodationTypes = [];
+            }
+            if(queryParams.has('categories')){
+                this.selectedAccomodationCategories = queryParams.getAll('categories');
+            }else{
+                this.selectedAccomodationCategories = [];
+            }
+            if(queryParams.has('bonusFeatures')){
+                this.selectedBonusFeatures = queryParams.getAll('bonusFeatures');
+            }else{
+                this.selectedBonusFeatures = [];
+            }
+        });
     }
 
     sortByName(){

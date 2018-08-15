@@ -57,7 +57,7 @@ getBonusFeatures(){
 bindAccomodationType(accomodationType: any){
     var index = this.containsElement(this.data.selectedAccomodationTypes, accomodationType);
     if(index==-1){
-        this.data.selectedAccomodationTypes.push(accomodationType);
+        this.data.selectedAccomodationTypes.push(accomodationType.id);
     }else{
         this.data.selectedAccomodationTypes.splice(index,1);
     }
@@ -66,7 +66,7 @@ bindAccomodationType(accomodationType: any){
   bindAccomodationCategory(accomodationCategory: any){
     var index = this.containsElement(this.data.selectedAccomodationCategories, accomodationCategory);
     if(index==-1){
-      this.data.selectedAccomodationCategories.push(accomodationCategory);
+      this.data.selectedAccomodationCategories.push(accomodationCategory.id);
     }else{
       this.data.selectedAccomodationCategories.splice(index,1);
     }
@@ -75,7 +75,7 @@ bindAccomodationType(accomodationType: any){
   bindBonusFeatures(bonusFeature: any){
     var index = this.containsElement(this.data.selectedBonusFeatures, bonusFeature);
     if(index==-1){
-      this.data.selectedBonusFeatures.push(bonusFeature);
+      this.data.selectedBonusFeatures.push(bonusFeature.id);
     }else{
       this.data.selectedBonusFeatures.splice(index,1);
     }
@@ -84,7 +84,7 @@ bindAccomodationType(accomodationType: any){
   containsElement(list:any[],element:any):number{
     var index = 0;
     for(let e of list){
-      if(e.id==element.id){
+      if(e==element.id){
         return index;
       }
       index++;
