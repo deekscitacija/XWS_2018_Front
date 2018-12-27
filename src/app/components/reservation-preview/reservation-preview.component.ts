@@ -104,8 +104,6 @@ export class ReservationPreviewComponent implements OnInit {
                       "rating" : this.theOcena
                     };
 
-    console.log(theRating);
-
     this.cloudRatingService.sendRating(theRating).subscribe(
       (res: any) => {
         this.alertService.success(res);
@@ -125,8 +123,7 @@ export class ReservationPreviewComponent implements OnInit {
                       "reservation_id" : this.reservation.id,
                       "comment" : this.tekstKomentara
                     };
-
-                    
+                 
     this.cloudRatingService.sendComment(theComment).subscribe(
       (res: any) => {
         this.alertService.success(res);
@@ -137,7 +134,6 @@ export class ReservationPreviewComponent implements OnInit {
         this.alertService.error("Greska prilikom komentarisanja boravka, pokusajte kasnije.");
       }
     );
-
   }
 
   triggerRefreshInput(){
